@@ -14,8 +14,10 @@ export class TodoComponent implements OnInit {
     private activeTasks;
     private newTodo;
     private path;
+    private areAllSelected = false;
 
     constructor(private todoService: TodoService, private route: ActivatedRoute) { }
+
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.path = params['status'];
@@ -63,6 +65,16 @@ export class TodoComponent implements OnInit {
         this.todoService.InverseDoneTodo(todo).then(() => {
             return this.getTodos();
         });
+    }
+
+    setTodosState() {
+        this.areAllSelected = !this.areAllSelected;
+        console.log(this.areAllSelected);
+
+        this.todoService.setTodosState(this.areAllSelected).then(() => {
+            return this.getTodos();
+        });
+
     }
 
 }

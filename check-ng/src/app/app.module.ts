@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
+import { DndModule } from 'ng2-dnd';
+
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 
@@ -21,7 +23,8 @@ const routes: Routes = [
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        DndModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]

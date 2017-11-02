@@ -35,7 +35,6 @@ export class TodoService {
     put(data) {
         return new Promise(resolve => {
             const index = todos.findIndex(todo => todo._id === data._id);
-
             resolve(data);
         });
     }
@@ -51,8 +50,6 @@ export class TodoService {
     deleteCompleted() {
         return new Promise(resolve => {
             todos = todos.filter(todo => !todo.isDone);
-            console.log(todos);
-
             resolve(todos);
         });
     }
@@ -62,6 +59,15 @@ export class TodoService {
             const index = todos.findIndex(todo => todo._id === data._id);
             todos[index].isDone = !todos[index].isDone;
             resolve(true);
+        });
+    }
+
+    setTodosState(state: boolean) {
+        return new Promise(resolve => {
+            todos.forEach(element => {
+                element.isDone = state;
+            });
+            resolve(todos);
         });
     }
 }
