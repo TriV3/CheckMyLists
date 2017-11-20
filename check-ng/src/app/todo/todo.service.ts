@@ -58,6 +58,7 @@ export class TodoService {
         return new Promise(resolve => {
             const index = todos.findIndex(todo => todo._id === data._id);
             todos[index].isDone = !todos[index].isDone;
+
             resolve(true);
         });
     }

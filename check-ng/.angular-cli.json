@@ -18,8 +18,7 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
-            "styles.scss",
-            "../node_modules/todomvc-app-css/index.css"
+            "styles.scss"
         ],
         "scripts": [],
         "environmentSource": "environments/environment.ts",

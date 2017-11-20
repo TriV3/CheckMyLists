@@ -1,45 +1,44 @@
-<section class="todoapp">
-    <header class="header">
-        <h1>Todo</h1>
-        <input class="new-todo" placeholder="What needs to be done?" [(ngModel)]="newTodo" (keyup.enter)="addTodo()" autofocus>
-    </header>
-    <!-- This section should be hidden by default and shown when there are todos -->
-    <section class="main">
-        <label for="toggle-all">Mark all as complete</label>
-        <input id="toggle-all" class="toggle" type="checkbox" (click)="setTodosState()">
-        <ul class="todo-list" dnd-sortable-container [sortableData]="todos">
-            <!-- These are here just to show the structure of the list items -->
-            <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-            <li *ngFor="let todo of todos let i=index" [ngClass]="{completed: todo.isDone, editing: todo.editing}">
-                <div class="view" dnd-sortable [sortableIndex]="i">
-                    <!-- <span class="grippy" dnd-sortable-handle></span> -->
-                    <input class="toggle" type="checkbox" [checked]="todo.isDone" (click)="checkTodo(todo)">
-                    <label (dblclick)="todo.editing = true">{{todo.title}}</label>
-                    <button class="destroy" (click)="destroyTodo(todo)"></button>
+<div id="todoapp">
+    <div id="box" class="effect">
+        <div id="header">
+            <i class="fa fa-chevron-down vertical-align-middle" [ngClass]="(areAllSelected==true)?'allSelected':'notAllSelected'" (click)="setTodosState()"></i>
+
+            <span class="addButton" (click)="todoDialog()">
+                <i class="fa fa-plus"></i>
+            </span>
+        </div>
+
+        <div id="list" *ngIf="todos?.length">
+            <div class="list-item" *ngFor="let todo of todos | tasksFilter: filterType; let i = index;" class="list-item">
+                <mat-checkbox class="todo-chk" color="primary" type="checkbox" [checked]="todo.isDone" (change)="checkTodo(todo)">
+                </mat-checkbox>
+
+                <div class="todo-text">
+                    <span [class.completed]="todo.isDone">{{ todo.title }}</span>
                 </div>
-                <input class="edit" #updatedTodo [value]="todo.title" (blur)="updateTodo(todo, updatedTodo.value)" (keyup.escape)="todo.editing = false"
-                    (keyup.enter)="updateTodo(todo, updatedTodo.value)">
-            </li>
-        </ul>
-    </section>
-    <!-- This footer should hidden by default and shown when there are todos -->
-    <footer class="footer">
-        <!-- This should be `0 items left` by default -->
-        <span class="todo-count">
-            <strong>{{activeTasks}}</strong> item left</span>
-        <!-- Remove this if you don't implement routing -->
-        <ul class="filters">
-            <li>
-                <a [routerLink]="['/all']" [class.selected]="path === 'all'">All</a>
-            </li>
-            <li>
-                <a [routerLink]="['/active']" [class.selected]="path === 'active'">Active</a>
-            </li>
-            <li>
-                <a [routerLink]="['/completed']" [class.selected]="path === 'completed'">Completed</a>
-            </li>
-        </ul>
-        <!-- Hidden if no completed items are left ↓ -->
-        <button class="clear-completed" (click)="clearCompleted()">Clear completed</button>
-    </footer>
-</section>
+                <div class="todo-controls">
+                    <span class="todo-edit fa fa-pencil" (click)="todoDialog(todo)"></span>
+                    <span class="todo-delete fa fa-trash-o" (click)="destroyTodo(todo)"></span>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div id="left"> {{ activeTasks }} item left</div>
+            <div id="filters">
+                <div class="filter" [ngClass]="(filterType=='All')?'filterSelected':'filterNotSelected'" (click)="filter('All')">All</div>
+                <div class="filter" [ngClass]="(filterType=='Active')?'filterSelected':'filterNotSelected'" (click)="filter('Active')">Active</div>
+                <div class="filter" [ngClass]="(filterType=='Completed')?'filterSelected':'filterNotSelected'" (click)="filter('Completed')">Completed</div>
+            </div>
+            <div id="clear" *ngIf="activeTasks < todos?.length">
+                <!-- <button (click)="clearCompleted()">Clear completed</button> -->
+                <span class="btn-clear" (click)="clearCompleted()">Clear completed</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-task-dialog [title]="modalTitle" [placeholder]="'What do you need to do?'" [okText]="okButtonText" [value]="fieldValue"
+    (valueEmitted)="addTodo($event)" [showPrompt]="showDialog">
+</app-task-dialog>
