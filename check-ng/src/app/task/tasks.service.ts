@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-let todos = [
+let tasks = [
     { _id: 1, title: 'Install Angular CLI', isDone: true },
     { _id: 2, title: 'Style app', isDone: true },
     { _id: 3, title: 'Finish service functionality', isDone: false },
@@ -8,7 +8,7 @@ let todos = [
 ];
 
 @Injectable()
-export class TodoService {
+export class TasksService {
 
     constructor() { }
 
@@ -17,9 +17,9 @@ export class TodoService {
             let data;
             if (query === 'completed' || query === 'active') {
                 const isCompleted = query === 'completed';
-                data = todos.filter(todo => todo.isDone === isCompleted);
+                data = tasks.filter(todo => todo.isDone === isCompleted);
             } else {
-                data = todos;
+                data = tasks;
             }
             resolve(data);
         });
@@ -27,37 +27,37 @@ export class TodoService {
 
     add(data) {
         return new Promise(resolve => {
-            todos.push(data);
+            tasks.push(data);
             resolve(data);
         });
     }
 
     put(data) {
         return new Promise(resolve => {
-            const index = todos.findIndex(todo => todo._id === data._id);
+            const index = tasks.findIndex(task => task._id === data._id);
             resolve(data);
         });
     }
 
     delete(id) {
         return new Promise(resolve => {
-            const index = todos.findIndex(todo => todo._id === id);
-            todos.splice(index, 1);
+            const index = tasks.findIndex(task => task._id === id);
+            tasks.splice(index, 1);
             resolve(true);
         });
     }
 
     deleteCompleted() {
         return new Promise(resolve => {
-            todos = todos.filter(todo => !todo.isDone);
-            resolve(todos);
+            tasks = tasks.filter(task => !task.isDone);
+            resolve(tasks);
         });
     }
 
     InverseDoneTodo(data) {
         return new Promise(resolve => {
-            const index = todos.findIndex(todo => todo._id === data._id);
-            todos[index].isDone = !todos[index].isDone;
+            const index = tasks.findIndex(task => task._id === data._id);
+            tasks[index].isDone = !tasks[index].isDone;
 
             resolve(true);
         });
@@ -65,10 +65,10 @@ export class TodoService {
 
     setTodosState(state: boolean) {
         return new Promise(resolve => {
-            todos.forEach(element => {
+            tasks.forEach(element => {
                 element.isDone = state;
             });
-            resolve(todos);
+            resolve(tasks);
         });
     }
 }

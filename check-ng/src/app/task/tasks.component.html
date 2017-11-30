@@ -1,0 +1,43 @@
+<div id="taskapp">
+    <div id="box" class="effect">
+        <div id="header">
+            <i class="fa fa-chevron-down vertical-align-middle" [ngClass]="(areAllSelected==true)?'allSelected':'notAllSelected'" (click)="SetTaskState()"></i>
+
+            <span class="addButton" (click)="TaskDialog()">
+                <i class="fa fa-plus"></i>
+            </span>
+        </div>
+
+        <div id="list" *ngIf="tasks?.length">
+            <div class="list-item" *ngFor="let task of tasks | tasksFilter: filterType; let i = index;" class="list-item">
+                <mat-checkbox class="task-chk" color="primary" type="checkbox" [checked]="task.isDone" (change)="CheckTask(task)">
+                </mat-checkbox>
+
+                <div class="task-text">
+                    <span [class.completed]="task.isDone">{{ task.title }}</span>
+                </div>
+                <div class="task-controls">
+                    <span class="task-edit fa fa-pencil" (click)="TaskDialog(task)"></span>
+                    <span class="task-delete fa fa-trash-o" (click)="DestroyTask(task)"></span>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div id="left"> {{ activeTasks }} item left</div>
+            <div id="filters">
+                <div class="filter" [ngClass]="(filterType=='All')?'filterSelected':'filterNotSelected'" (click)="Filter('All')">All</div>
+                <div class="filter" [ngClass]="(filterType=='Active')?'filterSelected':'filterNotSelected'" (click)="Filter('Active')">Active</div>
+                <div class="filter" [ngClass]="(filterType=='Completed')?'filterSelected':'filterNotSelected'" (click)="Filter('Completed')">Completed</div>
+            </div>
+            <div id="clear" *ngIf="activeTasks < tasks?.length">
+                <span class="btn-clear" (click)="ClearCompleted()">Clear completed</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-task-dialog [title]="modalTitle" [placeholder]="'What do you need to do?'" [okText]="okButtonText" [value]="fieldValue"
+    (valueEmitted)="AddTask($event)" [showPrompt]="showDialog">
+</app-task-dialog>

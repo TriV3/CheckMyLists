@@ -1,4 +1,4 @@
-#todoapp {
+#taskapp {
     box-sizing: border-box;
     height: 100%;
     width: 100%;
@@ -61,8 +61,8 @@
                 display: flex;
                 flex-flow: row nowrap;
                 justify-content: space-between;
-                .todo-chk {}
-                .todo-text {
+                .task-chk {}
+                .task-text {
                     padding-left: 10px;
                     flex: 1 1 0%;
                     span.completed {
@@ -70,7 +70,7 @@
                         text-decoration: line-through;
                     }
                 }
-                .todo-controls {
+                .task-controls {
                     box-sizing: border-box;
                     font-size: 1.1em;
                     display: none;
@@ -78,18 +78,18 @@
                     color: rgb(128, 79, 197);
                 }
                 &:hover {
-                    .todo-controls {
+                    .task-controls {
                         display: block;
                         cursor: pointer;
-                        .todo-edit, .todo-delete {
+                        .task-edit, .task-delete {
                             box-sizing: border-box;
                             transition: color 0.3s ease;
                             margin: 0 5px;
                         }
-                        .todo-edit:hover {
+                        .task-edit:hover {
                             color: rgb(172, 58, 58);
                         }
-                        .todo-delete:hover {
+                        .task-delete:hover {
                             color: rgb(172, 58, 58);
                         }
                     }

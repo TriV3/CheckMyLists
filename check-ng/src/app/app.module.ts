@@ -12,19 +12,19 @@ import {
 import { DndModule } from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
-import { TodoComponent } from './todo/todo.component';
+import { TasksComponent } from './task/tasks.component';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 
 import { TasksFilterPipe } from './tasks-filter.pipe';
 
 const routes: Routes = [
-    { path: '**', component: TodoComponent }
+    { path: '**', component: TasksComponent }
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
-        TodoComponent,
+        TasksComponent,
         TaskDialogComponent,
         TasksFilterPipe
     ],
