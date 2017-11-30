@@ -12,10 +12,10 @@ import {
 import { DndModule } from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
-import { TasksComponent } from './task/tasks.component';
-import { TaskDialogComponent } from './task-dialog/task-dialog.component';
+import { TasksComponent } from './pages/task/tasks.component';
+import { TaskDialogComponent } from './shared/components/task-dialog/task-dialog.component';
 
-import { TasksFilterPipe } from './tasks-filter.pipe';
+import { TasksFilterPipe } from './shared/filters/tasks-filter.pipe';
 
 const routes: Routes = [
     { path: '**', component: TasksComponent }

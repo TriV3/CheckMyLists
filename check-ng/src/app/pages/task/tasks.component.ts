@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TasksService } from './tasks.service';
+import { TasksService } from '../../shared/services/tasks/tasks.service';
 
 @Component({
     selector: 'app-task',

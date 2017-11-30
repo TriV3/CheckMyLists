@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "serve": "ng serve --aot --port 4321",
+        "serve": "ng serve --port 4321",
+        "serve-aot": "ng serve --aot --port 4321",
         "build": "ng build --prod --aot",
         "test": "ng test",
         "lint": "ng lint",

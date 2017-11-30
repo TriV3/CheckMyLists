@@ -5,6 +5,7 @@
     "repository": "https://github.com/TriV3/CheckMyLists",
     "scripts": {
         "serve:angular": "cd check-ng && npm run serve",
+        "serve:angular-aot": "cd check-ng && npm run serve:angular-aot",
         "build:angular": "cd check-ng && npm run build"
     },
     "dependencies": {}
