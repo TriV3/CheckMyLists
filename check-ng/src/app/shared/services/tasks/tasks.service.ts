@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Task } from '../../models/task';
 
-let tasks = [
-    { _id: 1, title: 'Install Angular CLI', isDone: true },
-    { _id: 2, title: 'Style app', isDone: true },
-    { _id: 3, title: 'Finish service functionality', isDone: false },
-    { _id: 4, title: 'Setup API', isDone: false },
-];
+let tasks: Task[]  = [];
 
 @Injectable()
 export class TasksService {
 
-    constructor() { }
+    constructor() {
+        tasks.push(new Task(1, 'Install Angular CLI', true));
+        tasks.push(new Task(2, 'Style app', true));
+        tasks.push(new Task(3, 'Finish service functionality', false));
+        tasks.push(new Task(4, 'Setup API', false));
+    }
 
     get(query = '') {
         return new Promise(resolve => {
@@ -27,6 +28,11 @@ export class TasksService {
 
     add(data) {
         return new Promise(resolve => {
+            // Get max id
+            const max = tasks.reduce((prev, current) => {
+                return (prev._id > current._id) ? prev : current;
+            })._id;
+            data._id = max + 1;
             tasks.push(data);
             resolve(data);
         });
@@ -35,7 +41,8 @@ export class TasksService {
     put(data) {
         return new Promise(resolve => {
             const index = tasks.findIndex(task => task._id === data._id);
-            resolve(data);
+            tasks[index] = data;
+            resolve(tasks[index]);
         });
     }
 
@@ -54,7 +61,7 @@ export class TasksService {
         });
     }
 
-    InverseDoneTodo(data) {
+    InverseDoneTask(data) {
         return new Promise(resolve => {
             const index = tasks.findIndex(task => task._id === data._id);
             tasks[index].isDone = !tasks[index].isDone;

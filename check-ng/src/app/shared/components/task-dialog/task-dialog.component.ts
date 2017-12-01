@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Task } from '../../models/task';
+
 
 @Component({
     selector: 'app-task-dialog',
@@ -7,25 +9,40 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TaskDialogComponent implements OnInit {
 
-    @Input() value: string;
     @Input() showPrompt: boolean;
-    @Input() placeholder: string;
     @Input() title: string;
-    @Input() template: string;
+    @Input() placeholder: string;
     @Input() okText: string;
     @Input() cancelText: string;
-    @Output() valueEmitted = new EventEmitter<string>();
+
+
+    @Input() task: Task;
+    @Output() valueEmitted = new EventEmitter<Task>();
+
+    private _task: Task;
 
     constructor() {
         this.okText = 'OK';
         this.cancelText = 'Cancel';
+        this.title = 'Create Task';
+        this.task = new Task(-1, '');
+        this._task = new Task(-1, '');
     }
 
     ngOnInit() {
     }
 
-    emitValue(value) {
-        this.valueEmitted.emit(value);
+    emitValue(b: boolean) {
+        if (b) {
+            if (this.task) {
+                this.valueEmitted.emit(this.task);
+            } else {
+                this.valueEmitted.emit(this._task);
+                this._task = new Task(-1, '');
+            }
+        } else {
+            this.valueEmitted.emit(null);
+        }
     }
 
 }

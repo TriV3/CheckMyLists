@@ -38,6 +38,6 @@
     </div>
 </div>
 
-<app-task-dialog [title]="modalTitle" [placeholder]="'What do you need to do?'" [okText]="okButtonText" [value]="fieldValue"
-    (valueEmitted)="AddTask($event)" [showPrompt]="showDialog">
+<app-task-dialog [title]="modalTitle" [placeholder]="'What do you need to do?'" [okText]="okButtonText" [task]="editingTask"
+    (valueEmitted)="CommitTask($event)" [showPrompt]="showDialog">
 </app-task-dialog>

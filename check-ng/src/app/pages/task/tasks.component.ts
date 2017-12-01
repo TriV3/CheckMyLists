@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { TasksService } from '../../shared/services/tasks/tasks.service';
+import { Task } from '../../shared/models/task';
 
 @Component({
     selector: 'app-task',
@@ -35,12 +36,11 @@ export class TasksComponent implements OnInit {
 
     TaskDialog(todo = null) {
         this.okButtonText = 'Create task';
-        this.modalTitle = 'New task';
+        this.modalTitle = 'New';
         this.fieldValue = '';
         this.editingTask = todo;
         if (todo) {
-            this.fieldValue = todo.title;
-            this.okButtonText = 'Edit task';
+            this.okButtonText = 'Edit';
             this.modalTitle = 'Edit task';
         }
         this.showDialog = true;
@@ -60,38 +60,37 @@ export class TasksComponent implements OnInit {
         });
     }
 
-    AddTask(title) {
-        if (!title || title === '') {
+    AddTask(task) {
+        if (!task.title || task.title === '') {
             this.HideDialog();
             return;
         }
-        title = title.trim();
-        this.tasksService.add({ title: title, isDone: false }).then(() => {
+        task.title = task.title.trim();
+        this.tasksService.add(new Task(-1, task.title)).then(() => {
             return this.GetTasks();
         }).then(() => {
             this.HideDialog();
         });
     }
 
-    UpdateTask(task, newValue) {
-        task.title = newValue;
+    UpdateTask(task) {
         return this.tasksService.put(task).then(() => {
             task.editing = false;
             return this.GetTasks();
         });
     }
 
-    // UpdateTask(title) {
-    //     if (title) {
-    //         title = title.trim();
-    //         if (this.editingTask) {
-    //             this.EditTask(title);
-    //         } else {
-    //             this.AddTask(title);
-    //         }
-    //     }
-    //     this.HideDialog();
-    // }
+    CommitTask(task) {
+        if (task && task.title !== '') {
+            task.title = task.title.trim();
+            if (this.editingTask) {
+                this.UpdateTask(task);
+            } else {
+                this.AddTask(task);
+            }
+        }
+        this.HideDialog();
+    }
 
     DestroyTask(task) {
         this.tasksService.delete(task._id).then(() => {
@@ -107,7 +106,7 @@ export class TasksComponent implements OnInit {
     }
 
     CheckTask(task) {
-        this.tasksService.InverseDoneTodo(task).then(() => {
+        this.tasksService.InverseDoneTask(task).then(() => {
             return this.GetTasks();
         });
     }
