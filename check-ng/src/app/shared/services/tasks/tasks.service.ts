@@ -1,81 +1,115 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Task } from '../../models/task';
+import { ApiRequestsService } from '../api-requests.service';
 
-let tasks: Task[]  = [];
+
 
 @Injectable()
 export class TasksService {
 
-    constructor() {
-        tasks.push(new Task(1, 'Install Angular CLI', true));
-        tasks.push(new Task(2, 'Style app', true));
-        tasks.push(new Task(3, 'Finish service functionality', false));
-        tasks.push(new Task(4, 'Setup API', false));
+    public tasks: Task[] = [];
+    private TaskUrl = 'http://localhost:3000/Tasks';
+
+    constructor(private api: ApiRequestsService) {
+
     }
 
     get(query = '') {
         return new Promise(resolve => {
-            let data;
-            if (query === 'completed' || query === 'active') {
-                const isCompleted = query === 'completed';
-                data = tasks.filter(todo => todo.isDone === isCompleted);
-            } else {
-                data = tasks;
-            }
-            resolve(data);
+            this.api.Get(this.TaskUrl).subscribe(
+                value => {
+                    this.tasks = value.json();
+
+                    let data;
+                    if (query === 'completed' || query === 'active') {
+                        const isCompleted = query === 'completed';
+                        data = this.tasks.filter(todo => todo.isDone === isCompleted);
+                    } else {
+                        data = this.tasks;
+                    }
+                    console.table(data);
+                    resolve(data);
+                },
+                error => {
+                    this.tasks = [];
+                    resolve(this.tasks);
+                });
+
         });
     }
 
-    add(data) {
-        return new Promise(resolve => {
-            // Get max id
-            const max = tasks.reduce((prev, current) => {
-                return (prev._id > current._id) ? prev : current;
-            })._id;
-            data._id = max + 1;
-            tasks.push(data);
-            resolve(data);
+    add(data: Task) {
+        return new Promise((resolve, reject) => {
+            this.api.Post(this.TaskUrl, data).subscribe(
+                value => {
+                    resolve(data);
+                },
+                error => {
+
+                    reject({});
+                });
         });
     }
 
-    put(data) {
-        return new Promise(resolve => {
-            const index = tasks.findIndex(task => task._id === data._id);
-            tasks[index] = data;
-            resolve(tasks[index]);
+    replace(data: Task) {
+        return new Promise((resolve, reject) => {
+            this.api.Patch(`${this.TaskUrl}/${data.id}`, data).subscribe(
+                value => {
+                    resolve(data);
+                },
+                error => {
+
+                    reject({});
+                });
         });
     }
 
-    delete(id) {
-        return new Promise(resolve => {
-            const index = tasks.findIndex(task => task._id === id);
-            tasks.splice(index, 1);
-            resolve(true);
+    delete(data: Task) {
+        return new Promise((resolve, reject) => {
+            this.api.Delete(`${this.TaskUrl}/${data.id}`).subscribe(
+                value => {
+                    resolve(data.id);
+                },
+                error => {
+                    reject({});
+                });
         });
     }
 
     deleteCompleted() {
-        return new Promise(resolve => {
-            tasks = tasks.filter(task => !task.isDone);
-            resolve(tasks);
+        return new Promise((resolve, reject) => {
+            this.tasks.map(task => {
+                if (task.isDone) {
+                    this.delete(task)
+                        .then(() => resolve(this.tasks))
+                        .catch(() => reject());
+                }
+            });
         });
     }
 
-    InverseDoneTask(data) {
-        return new Promise(resolve => {
-            const index = tasks.findIndex(task => task._id === data._id);
-            tasks[index].isDone = !tasks[index].isDone;
+    InverseDoneTask(data: Task) {
+        return new Promise((resolve, reject) => {
+            data.isDone = !data.isDone;
+            this.api.Patch(`${this.TaskUrl}/${data.id}`, data).subscribe(
+                value => {
+                    resolve(data);
+                },
+                error => {
 
-            resolve(true);
+                    reject({});
+                });
         });
     }
 
     setTodosState(state: boolean) {
-        return new Promise(resolve => {
-            tasks.forEach(element => {
-                element.isDone = state;
+        return new Promise((resolve, reject) => {
+            this.tasks.forEach(task => {
+                task.isDone = state;
+                this.replace(task)
+                    .then(() => resolve(this.tasks))
+                    .catch(() => reject());
             });
-            resolve(tasks);
         });
     }
 }

@@ -15,6 +15,8 @@ import { AppComponent } from './app.component';
 import { TasksComponent } from './pages/task/tasks.component';
 import { TaskDialogComponent } from './shared/components/task-dialog/task-dialog.component';
 
+import { ApiRequestsService } from './shared/services/api-requests.service';
+
 import { TasksFilterPipe } from './shared/filters/tasks-filter.pipe';
 
 const routes: Routes = [
@@ -43,7 +45,7 @@ const routes: Routes = [
         MatCheckboxModule,
         MatRadioModule
     ],
-    providers: [],
+    providers: [ApiRequestsService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

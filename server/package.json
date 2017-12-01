@@ -1,0 +1,12 @@
+{
+    "name": "server",
+    "version": "0.0.0",
+    "license": "MIT",
+    "description": "",
+    "scripts": {
+        "serve": "json-server --watch db.json"
+    },
+    "devDependencies": {
+        "json-server": "^0.12.1"
+    }
+}

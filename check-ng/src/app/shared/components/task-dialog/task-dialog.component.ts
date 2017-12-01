@@ -25,8 +25,8 @@ export class TaskDialogComponent implements OnInit {
         this.okText = 'OK';
         this.cancelText = 'Cancel';
         this.title = 'Create Task';
-        this.task = new Task(-1, '');
-        this._task = new Task(-1, '');
+        this.task = new Task('');
+        this._task = new Task('');
     }
 
     ngOnInit() {
@@ -38,7 +38,7 @@ export class TaskDialogComponent implements OnInit {
                 this.valueEmitted.emit(this.task);
             } else {
                 this.valueEmitted.emit(this._task);
-                this._task = new Task(-1, '');
+                this._task = new Task('');
             }
         } else {
             this.valueEmitted.emit(null);

@@ -2,6 +2,7 @@
     "name": "check-ng",
     "version": "0.0.0",
     "license": "MIT",
+    "author": "triv3 <trivedev@gmail.com>",
     "scripts": {
         "serve": "ng serve --port 4321",
         "serve-aot": "ng serve --aot --port 4321",

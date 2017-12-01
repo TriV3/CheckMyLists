@@ -66,7 +66,7 @@ export class TasksComponent implements OnInit {
             return;
         }
         task.title = task.title.trim();
-        this.tasksService.add(new Task(-1, task.title)).then(() => {
+        this.tasksService.add(new Task(task.title)).then(() => {
             return this.GetTasks();
         }).then(() => {
             this.HideDialog();
@@ -74,7 +74,7 @@ export class TasksComponent implements OnInit {
     }
 
     UpdateTask(task) {
-        return this.tasksService.put(task).then(() => {
+        return this.tasksService.replace(task).then(() => {
             task.editing = false;
             return this.GetTasks();
         });
@@ -93,7 +93,7 @@ export class TasksComponent implements OnInit {
     }
 
     DestroyTask(task) {
-        this.tasksService.delete(task._id).then(() => {
+        this.tasksService.delete(task).then(() => {
             return this.GetTasks();
         });
     }
@@ -113,7 +113,6 @@ export class TasksComponent implements OnInit {
 
     SetTaskState() {
         this.areAllSelected = !this.areAllSelected;
-        console.log(this.areAllSelected);
 
         this.tasksService.setTodosState(this.areAllSelected).then(() => {
             return this.GetTasks();

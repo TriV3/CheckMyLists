@@ -4,6 +4,7 @@
     "license": "MIT",
     "repository": "https://github.com/TriV3/CheckMyLists",
     "scripts": {
+        "serve:server": "cd server && npm run serve",
         "serve:angular": "cd check-ng && npm run serve",
         "serve:angular-aot": "cd check-ng && npm run serve:angular-aot",
         "build:angular": "cd check-ng && npm run build"
