@@ -8,6 +8,7 @@ export class Task {
     public id: number;
     public title: string;
     public isDone: boolean;
+    public order_id: number;
 
     /**
      * Creates an instance of ArchiEquipment.
@@ -26,5 +27,6 @@ export class Task {
         } else {
             this.isDone = false;
         }
+        this.order_id = -1;
     }
 }

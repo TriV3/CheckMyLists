@@ -8,8 +8,12 @@
             </span>
         </div>
 
-        <div id="list" *ngIf="tasks?.length">
-            <div class="list-item" *ngFor="let task of tasks | tasksFilter: filterType; let i = index;" class="list-item">
+        <div id="list" *ngIf="tasks?.length" dnd-sortable-container [sortableData]="tasks" dnd-droppable>
+            <div class="list-item" *ngFor="let task of tasks | tasksFilter: filterType | sortBy:'order_id'; let i = index;" dnd-sortable [sortableIndex]="i" (onDropSuccess)="sort(tasks)">
+                <!-- <div class="handle" dnd-sortable-handle>
+                    <span class="fa fa-reorder"></span>
+                </div> -->
+                <span class="grippy"></span>
                 <mat-checkbox class="task-chk" color="primary" type="checkbox" [checked]="task.isDone" (change)="CheckTask(task)">
                 </mat-checkbox>
 

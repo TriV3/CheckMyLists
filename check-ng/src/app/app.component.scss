@@ -1,4 +1,15 @@
-.page {
+#parent {
     height: 100%;
     width: 100%;
+    #menu-button {
+        // position: fixed;
+        position: absolute;
+        letf: 0px;
+        top: 0px;
+        zindex: 999;
+    }
+    .page {
+        height: 100%;
+        width: 100%;
+    }
 }

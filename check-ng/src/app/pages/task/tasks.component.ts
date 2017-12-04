@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { TasksService } from '../../shared/services/tasks/tasks.service';
 import { Task } from '../../shared/models/task';
 
+
 @Component({
     selector: 'app-task',
     templateUrl: './tasks.component.html',
     styleUrls: ['./tasks.component.scss'],
-    providers: [TasksService]
+    providers: [TasksService],
 })
 export class TasksComponent implements OnInit {
 
@@ -57,10 +58,11 @@ export class TasksComponent implements OnInit {
             this.tasks = tasks;
             this.activeTasks = this.tasks.filter(task => !task.isDone).length;
             this.changeDetectorRef.markForCheck();
+            console.table(this.tasks);
         });
     }
 
-    AddTask(task) {
+    AddTask(task: Task) {
         if (!task.title || task.title === '') {
             this.HideDialog();
             return;
@@ -73,14 +75,15 @@ export class TasksComponent implements OnInit {
         });
     }
 
-    UpdateTask(task) {
+    UpdateTask(task: Task) {
         return this.tasksService.replace(task).then(() => {
-            task.editing = false;
+            // this.editingTask = false;
+            this.HideDialog();
             return this.GetTasks();
         });
     }
 
-    CommitTask(task) {
+    CommitTask(task: Task) {
         if (task && task.title !== '') {
             task.title = task.title.trim();
             if (this.editingTask) {
@@ -92,7 +95,7 @@ export class TasksComponent implements OnInit {
         this.HideDialog();
     }
 
-    DestroyTask(task) {
+    DestroyTask(task: Task) {
         this.tasksService.delete(task).then(() => {
             return this.GetTasks();
         });
@@ -105,13 +108,13 @@ export class TasksComponent implements OnInit {
         });
     }
 
-    CheckTask(task) {
+    CheckTask(task: Task) {
         this.tasksService.InverseDoneTask(task).then(() => {
             return this.GetTasks();
         });
     }
 
-    SetTaskState() {
+    SetTaskState(tasks: Task[]) {
         this.areAllSelected = !this.areAllSelected;
 
         this.tasksService.setTodosState(this.areAllSelected).then(() => {
@@ -122,6 +125,15 @@ export class TasksComponent implements OnInit {
 
     Filter(type: string) {
         this.filterType = type;
+    }
+
+    sort(tasks: Task[]) {
+        tasks.forEach((task, i) => {
+            task.order_id = i;
+        });
+        return this.tasksService.replaceAll(tasks).then(() => {
+            return this.GetTasks();
+        });
     }
 
 }

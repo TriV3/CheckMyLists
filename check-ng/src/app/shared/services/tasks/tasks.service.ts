@@ -27,7 +27,6 @@ export class TasksService {
                     } else {
                         data = this.tasks;
                     }
-                    console.table(data);
                     resolve(data);
                 },
                 error => {
@@ -61,6 +60,13 @@ export class TasksService {
 
                     reject({});
                 });
+        });
+    }
+    replaceAll(data: Task[]) {
+        return new Promise((resolve, reject) => {
+            data.forEach(task => {
+                this.replace(task);
+            });
         });
     }
 

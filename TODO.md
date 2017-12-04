@@ -17,6 +17,6 @@
 
 
 ## Backend
-    ☐ Implement REST api for tasks
+    ✔ Implement REST api for tasks @done (December 4th 2017, 8:06)
     ☐ Implement REST api for cooking
     ☐ Implement REST api for purchases

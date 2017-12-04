@@ -1,23 +1,28 @@
 {
-    "Tasks": [{
-            "id": 1,
-            "title": "Install Angular CLI",
-            "isDone": true
-        },
-        {
-            "id": 2,
-            "title": "Style app with scss",
-            "isDone": false
-        },
-        {
-            "id": 3,
-            "title": "Finish service functionality",
-            "isDone": true
-        },
-        {
-            "id": 6,
-            "title": "another task",
-            "isDone": true
-        }
-    ]
+  "Tasks": [
+    {
+      "id": 1,
+      "title": "Install Angular CLI",
+      "isDone": false,
+      "order_id": 0
+    },
+    {
+      "id": 2,
+      "title": "Style app with scss",
+      "isDone": true,
+      "order_id": 2
+    },
+    {
+      "id": 3,
+      "title": "Finish service functionality",
+      "isDone": true,
+      "order_id": 3
+    },
+    {
+      "id": 4,
+      "title": "another task",
+      "isDone": true,
+      "order_id": 1
+    }
+  ]
 }

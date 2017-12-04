@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatMenuModule, MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule,
-    MatCheckboxModule, MatRadioModule
+    MatCheckboxModule, MatRadioModule, MatMenu
 } from '@angular/material';
 
 import { DndModule } from 'ng2-dnd';
@@ -18,6 +18,7 @@ import { TaskDialogComponent } from './shared/components/task-dialog/task-dialog
 import { ApiRequestsService } from './shared/services/api-requests.service';
 
 import { TasksFilterPipe } from './shared/filters/tasks-filter.pipe';
+import { ArraySortPipe } from './shared/filters/arraySort.pipe';
 
 const routes: Routes = [
     { path: '**', component: TasksComponent }
@@ -28,7 +29,8 @@ const routes: Routes = [
         AppComponent,
         TasksComponent,
         TaskDialogComponent,
-        TasksFilterPipe
+        TasksFilterPipe,
+        ArraySortPipe
     ],
     imports: [
         BrowserModule,
