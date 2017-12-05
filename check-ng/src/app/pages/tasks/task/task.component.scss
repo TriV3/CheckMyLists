@@ -1,0 +1,60 @@
+.task {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    span.grippy {
+        content: '...';
+        width: 20px;
+        // height: 25px;
+        display: inline-block;
+        overflow: hidden;
+        line-height: 5px;
+        // padding: 3px 4px;
+        cursor: move;
+        vertical-align: middle;
+        // margin-top: -.7em;
+        // margin-right: .3em;
+        font-size: 12px;
+        font-family: sans-serif;
+        letter-spacing: 2px;
+        color: #cccccc;
+        text-shadow: 1px 0 1px black;
+    }
+    span.grippy::after {
+        content: '.. .. .. ..';
+    }
+    .task-chk {}
+    .task-text {
+        padding-left: 10px;
+        flex: 1 1 0%;
+        span.completed {
+            color: #9d9d9d;
+            text-decoration: line-through;
+        }
+    }
+    .task-controls {
+        box-sizing: border-box;
+        font-size: 1.1em;
+        display: none; // margin: 10px;
+        color: rgb(128, 79, 197);
+    }
+    &:hover {
+        .task-controls {
+            display: block;
+            cursor: pointer;
+            .task-edit,
+            .task-delete {
+                box-sizing: border-box;
+                transition: color 0.3s ease;
+                margin: 0 5px;
+            }
+            .task-edit:hover {
+                color: rgb(172, 58, 58);
+            }
+            .task-delete:hover {
+                color: rgb(172, 58, 58);
+            }
+        }
+    }
+}

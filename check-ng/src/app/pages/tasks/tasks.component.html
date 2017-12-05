@@ -10,18 +10,9 @@
         </div>
 
         <div id="list" *ngIf="tasks?.length" dnd-sortable-container [sortableData]="tasks" dnd-droppable>
-            <div class="list-item" *ngFor="let task of tasks | tasksFilter: filterType | sortBy:'order_id'; let i = index;" dnd-sortable [sortableIndex]="i" (onDropSuccess)="sort(tasks)">
-                <span class="grippy"></span>
-                <mat-checkbox class="task-chk" color="primary" type="checkbox" [checked]="task.isDone" (change)="CheckTask(task)">
-                </mat-checkbox>
-
-                <div class="task-text">
-                    <span [class.completed]="task.isDone">{{ task.title }}</span>
-                </div>
-                <div class="task-controls">
-                    <span class="task-edit fa fa-pencil" (click)="TaskDialog(task)"></span>
-                    <span class="task-delete fa fa-trash-o" (click)="DestroyTask(task)"></span>
-                </div>
+            <div class="list-item" *ngFor="let task of tasks | tasksFilter: filterType | sortBy:'order_id'; let i = index;" dnd-sortable
+                [sortableIndex]="i" (onDropSuccess)="sort(tasks)">
+                <app-task class="task" [task]="task" (checkTask)="CheckTask($event)" (editTask)="TaskDialog($event)" (destroyTask)="DestroyTask($event)"></app-task>
                 <br>
             </div>
         </div>

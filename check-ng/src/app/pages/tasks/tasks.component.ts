@@ -6,7 +6,7 @@ import { Task } from '../../shared/models/task';
 
 
 @Component({
-    selector: 'app-task',
+    selector: 'app-tasks',
     templateUrl: './tasks.component.html',
     styleUrls: ['./tasks.component.scss'],
     providers: [TasksService],
@@ -35,12 +35,12 @@ export class TasksComponent implements OnInit {
         this.GetTasks();
     }
 
-    TaskDialog(todo = null) {
+    TaskDialog(task: Task = null) {
         this.okButtonText = 'Create task';
         this.modalTitle = 'New';
         this.fieldValue = '';
-        this.editingTask = todo;
-        if (todo) {
+        this.editingTask = task;
+        if (task) {
             this.okButtonText = 'Edit';
             this.modalTitle = 'Edit task';
         }

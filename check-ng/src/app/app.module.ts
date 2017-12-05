@@ -19,6 +19,7 @@ import { ApiRequestsService } from './shared/services/api-requests.service';
 
 import { TasksFilterPipe } from './shared/filters/tasks-filter.pipe';
 import { ArraySortPipe } from './shared/filters/arraySort.pipe';
+import { TaskComponent } from './pages/tasks/task/task.component';
 
 const routes: Routes = [
     { path: '**', component: TasksComponent }
@@ -30,7 +31,8 @@ const routes: Routes = [
         TasksComponent,
         TaskDialogComponent,
         TasksFilterPipe,
-        ArraySortPipe
+        ArraySortPipe,
+        TaskComponent
     ],
     imports: [
         BrowserModule,
