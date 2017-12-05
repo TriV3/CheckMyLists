@@ -13,16 +13,26 @@ import { DndModule } from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
+import { TaskComponent } from './pages/tasks/task/task.component';
+import { PurchasesComponent } from './pages/purchases/purchases.component';
+import { PurchaseComponent } from './pages/purchases/purchase/purchase.component';
+import { MealsComponent } from './pages/meals/meals.component';
+import { MealComponent } from './pages/meals/meal/meal.component';
+
 import { TaskDialogComponent } from './shared/components/task-dialog/task-dialog.component';
 
 import { ApiRequestsService } from './shared/services/api-requests.service';
 
 import { TasksFilterPipe } from './shared/filters/tasks-filter.pipe';
 import { ArraySortPipe } from './shared/filters/arraySort.pipe';
-import { TaskComponent } from './pages/tasks/task/task.component';
+
 
 const routes: Routes = [
-    { path: '**', component: TasksComponent }
+    { path: '', redirectTo: 'tasks', pathMatch: 'full' },
+    { path: 'meals', component: MealsComponent },
+    { path: 'purchases', component: PurchasesComponent },
+    { path: 'tasks', component: TasksComponent },
+    { path: '**', redirectTo: 'tasks', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -32,7 +42,11 @@ const routes: Routes = [
         TaskDialogComponent,
         TasksFilterPipe,
         ArraySortPipe,
-        TaskComponent
+        TaskComponent,
+        PurchasesComponent,
+        PurchaseComponent,
+        MealsComponent,
+        MealComponent
     ],
     imports: [
         BrowserModule,

@@ -58,7 +58,6 @@ export class TasksComponent implements OnInit {
             this.tasks = tasks;
             this.activeTasks = this.tasks.filter(task => !task.isDone).length;
             this.changeDetectorRef.markForCheck();
-            console.table(this.tasks);
         });
     }
 

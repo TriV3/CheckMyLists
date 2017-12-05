@@ -1,14 +1,14 @@
 import { Injectable, Inject } from '@angular/core';
-import { Task } from '../../models/task';
+import { Purchase } from '../../models/purchase';
 import { ApiRequestsService } from '../api-requests.service';
 
 
 
 @Injectable()
-export class TasksService {
+export class PurchasesService {
 
-    public tasks: Task[] = [];
-    private TaskUrl = 'http://localhost:3000/Tasks';
+    public purchases: Purchase[] = [];
+    private purchasesUrl = 'http://localhost:3000/Purchases';
 
     constructor(private api: ApiRequestsService) {
 
@@ -16,30 +16,30 @@ export class TasksService {
 
     get(query = '') {
         return new Promise(resolve => {
-            this.api.Get(this.TaskUrl).subscribe(
+            this.api.Get(this.purchasesUrl).subscribe(
                 value => {
-                    this.tasks = value.json();
+                    this.purchases = value.json();
 
                     let data;
                     if (query === 'completed' || query === 'active') {
                         const isCompleted = query === 'completed';
-                        data = this.tasks.filter(task => task.isDone === isCompleted);
+                        data = this.purchases.filter(purchase => purchase.isDone === isCompleted);
                     } else {
-                        data = this.tasks;
+                        data = this.purchases;
                     }
                     resolve(data);
                 },
                 error => {
-                    this.tasks = [];
-                    resolve(this.tasks);
+                    this.purchases = [];
+                    resolve(this.purchases);
                 });
 
         });
     }
 
-    add(data: Task) {
+    add(data: Purchase) {
         return new Promise((resolve, reject) => {
-            this.api.Post(this.TaskUrl, data).subscribe(
+            this.api.Post(this.purchasesUrl, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -50,9 +50,9 @@ export class TasksService {
         });
     }
 
-    replace(data: Task) {
+    replace(data: Purchase) {
         return new Promise((resolve, reject) => {
-            this.api.Patch(`${this.TaskUrl}/${data.id}`, data).subscribe(
+            this.api.Patch(`${this.purchasesUrl}/${data.id}`, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -62,7 +62,7 @@ export class TasksService {
                 });
         });
     }
-    replaceAll(data: Task[]) {
+    replaceAll(data: Purchase[]) {
         return new Promise((resolve, reject) => {
             data.forEach(task => {
                 this.replace(task);
@@ -70,9 +70,9 @@ export class TasksService {
         });
     }
 
-    delete(data: Task) {
+    delete(data: Purchase) {
         return new Promise((resolve, reject) => {
-            this.api.Delete(`${this.TaskUrl}/${data.id}`).subscribe(
+            this.api.Delete(`${this.purchasesUrl}/${data.id}`).subscribe(
                 value => {
                     resolve(data.id);
                 },
@@ -84,20 +84,20 @@ export class TasksService {
 
     deleteCompleted() {
         return new Promise((resolve, reject) => {
-            this.tasks.map(task => {
+            this.purchases.map(task => {
                 if (task.isDone) {
                     this.delete(task)
-                        .then(() => resolve(this.tasks))
+                        .then(() => resolve(this.purchases))
                         .catch(() => reject());
                 }
             });
         });
     }
 
-    InverseDoneTask(data: Task) {
+    InverseDoneTask(data: Purchase) {
         return new Promise((resolve, reject) => {
             data.isDone = !data.isDone;
-            this.api.Patch(`${this.TaskUrl}/${data.id}`, data).subscribe(
+            this.api.Patch(`${this.purchasesUrl}/${data.id}`, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -110,10 +110,10 @@ export class TasksService {
 
     setTodosState(state: boolean) {
         return new Promise((resolve, reject) => {
-            this.tasks.forEach(task => {
+            this.purchases.forEach(task => {
                 task.isDone = state;
                 this.replace(task)
-                    .then(() => resolve(this.tasks))
+                    .then(() => resolve(this.purchases))
                     .catch(() => reject());
             });
         });

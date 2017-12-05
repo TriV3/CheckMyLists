@@ -1,0 +1,19 @@
+<div class="overlay" *ngIf="showPrompt">
+    <mat-card class="modalDialog">
+        <mat-toolbar class="center" color="primary">
+            {{ title }}
+        </mat-toolbar>
+        <mat-card-content>
+            <div class="full-width">
+                <input *ngIf="purchase !== null" class="full-width" matInput [placeholder]="placeholder" [(ngModel)]="purchase.title" (keyup.enter)="emitValue(true)"
+                    (keyup.escape)="emitValue(false)" />
+                <input *ngIf="purchase === null" class="full-width" matInput [placeholder]="placeholder" [(ngModel)]="_purchase.title" (keyup.enter)="emitValue(true)"
+                    (keyup.escape)="emitValue(false)" />
+            </div>
+        </mat-card-content>
+        <mat-card-actions class="center">
+            <button mat-button (click)="emitValue(false)" color="primary">{{cancelText}}</button>
+            <button mat-raised-button (click)="emitValue(true)" color="primary">{{okText}}</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
