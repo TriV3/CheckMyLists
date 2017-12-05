@@ -13,7 +13,7 @@ import { Task } from '../../shared/models/task';
 })
 export class TasksComponent implements OnInit {
 
-
+    public title = 'Tasks';
     public tasks;
     public activeTasks;
     private path;

@@ -12,7 +12,7 @@ import {
 import { DndModule } from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
-import { TasksComponent } from './pages/task/tasks.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
 import { TaskDialogComponent } from './shared/components/task-dialog/task-dialog.component';
 
 import { ApiRequestsService } from './shared/services/api-requests.service';
