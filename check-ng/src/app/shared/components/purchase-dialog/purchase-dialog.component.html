@@ -5,9 +5,15 @@
         </mat-toolbar>
         <mat-card-content>
             <div class="full-width">
-                <input *ngIf="purchase !== null" class="full-width" matInput [placeholder]="placeholder" [(ngModel)]="purchase.title" (keyup.enter)="emitValue(true)"
+                <input *ngIf="purchase !== null" class="full-width" matInput placeholder="What do you need to do?" [(ngModel)]="purchase.title" (keyup.enter)="emitValue(true)"
                     (keyup.escape)="emitValue(false)" />
-                <input *ngIf="purchase === null" class="full-width" matInput [placeholder]="placeholder" [(ngModel)]="_purchase.title" (keyup.enter)="emitValue(true)"
+                <input *ngIf="purchase === null" class="full-width" matInput placeholder="What do you need to do?" [(ngModel)]="_purchase.title" (keyup.enter)="emitValue(true)"
+                    (keyup.escape)="emitValue(false)" />
+            </div>
+            <div class="full-width">
+                <input *ngIf="purchase !== null" class="full-width" matInput placeholder="price" [(ngModel)]="purchase.price" (keyup.enter)="emitValue(true)"
+                    (keyup.escape)="emitValue(false)" />
+                <input *ngIf="purchase === null" class="full-width" matInput placeholder="price" [(ngModel)]="_purchase.price" (keyup.enter)="emitValue(true)"
                     (keyup.escape)="emitValue(false)" />
             </div>
         </mat-card-content>

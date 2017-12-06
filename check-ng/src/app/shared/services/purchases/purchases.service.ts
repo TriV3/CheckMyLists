@@ -7,8 +7,8 @@ import { ApiRequestsService } from '../api-requests.service';
 @Injectable()
 export class PurchasesService {
 
-    public purchases: Purchase[] = [];
-    private purchasesUrl = 'http://localhost:3000/Purchases';
+    public databaseData: Purchase[] = [];
+    private apiUrl = 'http://localhost:3000/Purchases';
 
     constructor(private api: ApiRequestsService) {
 
@@ -16,30 +16,30 @@ export class PurchasesService {
 
     get(query = '') {
         return new Promise(resolve => {
-            this.api.Get(this.purchasesUrl).subscribe(
+            this.api.Get(this.apiUrl).subscribe(
                 value => {
-                    this.purchases = value.json();
+                    this.databaseData = value.json();
 
-                    let data;
+                    let result;
                     if (query === 'completed' || query === 'active') {
                         const isCompleted = query === 'completed';
-                        data = this.purchases.filter(purchase => purchase.isDone === isCompleted);
+                        result = this.databaseData.filter(val => val.isDone === isCompleted);
                     } else {
-                        data = this.purchases;
+                        result = this.databaseData;
                     }
-                    resolve(data);
+                    resolve(result);
                 },
                 error => {
-                    this.purchases = [];
-                    resolve(this.purchases);
+                    this.databaseData = [];
+                    resolve(this.databaseData);
                 });
 
         });
     }
 
-    add(data: Purchase) {
+    add(data) {
         return new Promise((resolve, reject) => {
-            this.api.Post(this.purchasesUrl, data).subscribe(
+            this.api.Post(this.apiUrl, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -50,9 +50,9 @@ export class PurchasesService {
         });
     }
 
-    replace(data: Purchase) {
+    replace(data) {
         return new Promise((resolve, reject) => {
-            this.api.Patch(`${this.purchasesUrl}/${data.id}`, data).subscribe(
+            this.api.Patch(`${this.apiUrl}/${data.id}`, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -62,17 +62,18 @@ export class PurchasesService {
                 });
         });
     }
-    replaceAll(data: Purchase[]) {
+
+    replaceAll(data) {
         return new Promise((resolve, reject) => {
-            data.forEach(task => {
-                this.replace(task);
+            data.forEach(val => {
+                this.replace(val);
             });
         });
     }
 
-    delete(data: Purchase) {
+    delete(data) {
         return new Promise((resolve, reject) => {
-            this.api.Delete(`${this.purchasesUrl}/${data.id}`).subscribe(
+            this.api.Delete(`${this.apiUrl}/${data.id}`).subscribe(
                 value => {
                     resolve(data.id);
                 },
@@ -84,20 +85,20 @@ export class PurchasesService {
 
     deleteCompleted() {
         return new Promise((resolve, reject) => {
-            this.purchases.map(task => {
-                if (task.isDone) {
-                    this.delete(task)
-                        .then(() => resolve(this.purchases))
+            this.databaseData.map(value => {
+                if (value.isDone) {
+                    this.delete(value)
+                        .then(() => resolve(this.databaseData))
                         .catch(() => reject());
                 }
             });
         });
     }
 
-    InverseDoneTask(data: Purchase) {
+    ToggleComplete(data) {
         return new Promise((resolve, reject) => {
             data.isDone = !data.isDone;
-            this.api.Patch(`${this.purchasesUrl}/${data.id}`, data).subscribe(
+            this.api.Patch(`${this.apiUrl}/${data.id}`, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -108,12 +109,12 @@ export class PurchasesService {
         });
     }
 
-    setTodosState(state: boolean) {
+    setAllState(state: boolean) {
         return new Promise((resolve, reject) => {
-            this.purchases.forEach(task => {
-                task.isDone = state;
-                this.replace(task)
-                    .then(() => resolve(this.purchases))
+            this.databaseData.forEach(value => {
+                value.isDone = state;
+                this.replace(value)
+                    .then(() => resolve(this.databaseData))
                     .catch(() => reject());
             });
         });

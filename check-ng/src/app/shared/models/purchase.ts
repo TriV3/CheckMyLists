@@ -7,21 +7,21 @@
 export class Purchase {
     public id: number;
     public title: string;
-    public price: number;
+    public price: string;
     public isDone: boolean;
     public order_id: number;
 
     /**
      * Creates an instance of Purchase.
      * @param {string} title Purchase title
-     * @param {number} price Purchase price
+     * @param {string} price Purchase price
      * @param {boolean} isDone Purchase accomplishment state
      *
      * @memberOf Task
      */
     constructor(
         title: string,
-        price: number,
+        price: string,
         isDone?: boolean
     ) {
         this.title = title;

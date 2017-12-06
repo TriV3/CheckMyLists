@@ -1,0 +1,29 @@
+<div id="box" class="effect">
+    <div id="header">
+        <i class="fa fa-chevron-down vertical-align-middle" [ngClass]="(areAllSelected==true)?'allSelected':'notAllSelected'" (click)="SetAllState()"></i>
+
+        <span class="addButton" (click)="onDialog.emit(null)">
+            <i class="fa fa-plus"></i>
+        </span>
+    </div>
+
+    <div id="list" *ngIf="values?.length" dnd-sortable-container [sortableData]="values" dnd-droppable>
+        <div class="list-item" *ngFor="let value of values | tasksFilter: filterType | sortBy:'order_id'; let i = index;" dnd-sortable
+            [sortableIndex]="i" (onDropSuccess)="onSort.emit(values)">
+            <app-purchase class="element" [purchase]="value" (onCheck)="onCheck.emit($event)" (onEdit)="onEdit.emit($event)" (onDestroy)="onDestroy.emit($event)"></app-purchase>
+            <br>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="left"> {{ activeElements }} item left</div>
+        <div id="filters">
+            <div class="filter" [ngClass]="(filterType=='All')?'filterSelected':'filterNotSelected'" (click)="Filter('All')">All</div>
+            <div class="filter" [ngClass]="(filterType=='Active')?'filterSelected':'filterNotSelected'" (click)="Filter('Active')">Active</div>
+            <div class="filter" [ngClass]="(filterType=='Completed')?'filterSelected':'filterNotSelected'" (click)="Filter('Completed')">Completed</div>
+        </div>
+        <div id="clear" *ngIf="activeElements < values?.length">
+            <span class="btn-clear" (click)="onClearCompleted.emit()">Clear completed</span>
+        </div>
+    </div>
+</div>

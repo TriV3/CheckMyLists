@@ -1,3 +1,16 @@
-<p>
-    purchase works!
-</p>
+<div class="purchase">
+    <span class="grippy"></span>
+    <mat-checkbox class="value-chk" color="primary" type="checkbox" [checked]="purchase.isDone" (change)="onCheck.emit(purchase)">
+    </mat-checkbox>
+
+    <div class="value-text">
+        <span [class.completed]="purchase.isDone">{{ purchase.title  }}</span>
+    </div>
+    <div class="value-price">
+        <span [class.completed]="purchase.isDone">{{ purchase.price }}&euro;</span>
+    </div>
+    <div class="value-controls">
+        <span class="value-edit fa fa-pencil" (click)="onEdit.emit(purchase)"></span>
+        <span class="value-delete fa fa-trash-o" (click)="onDestroy.emit(purchase)"></span>
+    </div>
+</div>

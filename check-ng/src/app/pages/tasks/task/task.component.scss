@@ -24,8 +24,8 @@
     span.grippy::after {
         content: '.. .. .. ..';
     }
-    .task-chk {}
-    .task-text {
+    .value-chk {}
+    .value-text {
         padding-left: 10px;
         flex: 1 1 0%;
         span.completed {
@@ -33,26 +33,26 @@
             text-decoration: line-through;
         }
     }
-    .task-controls {
+    .value-controls {
         box-sizing: border-box;
         font-size: 1.1em;
         display: none; // margin: 10px;
         color: rgb(128, 79, 197);
     }
     &:hover {
-        .task-controls {
+        .value-controls {
             display: block;
             cursor: pointer;
-            .task-edit,
-            .task-delete {
+            .value-edit,
+            .value-delete {
                 box-sizing: border-box;
                 transition: color 0.3s ease;
                 margin: 0 5px;
             }
-            .task-edit:hover {
+            .value-edit:hover {
                 color: rgb(172, 58, 58);
             }
-            .task-delete:hover {
+            .value-delete:hover {
                 color: rgb(172, 58, 58);
             }
         }

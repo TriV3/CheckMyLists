@@ -1,51 +1,42 @@
 {
-  "Tasks": [
-    {
-      "id": 1,
-      "title": "Install Angular CLI",
-      "isDone": false,
-      "order_id": 0
-    },
-    {
-      "id": 2,
-      "title": "Style app with scss",
-      "isDone": true,
-      "order_id": 1
-    },
-    {
-      "id": 3,
-      "title": "Finish service functionality",
-      "isDone": true,
-      "order_id": 2
-    },
-    {
-      "id": 4,
-      "title": "another task",
-      "isDone": true,
-      "order_id": 3
-    }
-  ],
-  "Purchases": [
-    {
-      "id": 1,
-      "title": "The DVD of the life",
-      "price": 9.99,
-      "isDone": true,
-      "order_id": 0
-    },
-    {
-      "id": 2,
-      "title": "A book (cause i love reading)",
-      "price": 5,
-      "isDone": false,
-      "order_id": 1
-    },
-    {
-      "id": 3,
-      "title": "A new cool plugin",
-      "price": 15.54,
-      "isDone": false,
-      "order_id": 2
-    }
-  ]
+    "Tasks": [{
+            "id": 1,
+            "title": "Install Angular CLI",
+            "isDone": false,
+            "order_id": 0
+        },
+        {
+            "id": 2,
+            "title": "Style app with scss",
+            "isDone": true,
+            "order_id": 1
+        },
+        {
+            "id": 3,
+            "title": "Finish service functionality",
+            "isDone": true,
+            "order_id": 2
+        },
+        {
+            "id": 4,
+            "title": "another task",
+            "isDone": true,
+            "order_id": 3
+        }
+    ],
+    "Purchases": [{
+            "id": 2,
+            "title": "A book (cause i love reading)",
+            "price": "5",
+            "isDone": false,
+            "order_id": 1
+        },
+        {
+            "title": "Des trucs de fou",
+            "price": "10",
+            "isDone": false,
+            "order_id": 3,
+            "id": 4
+        }
+    ]
 }

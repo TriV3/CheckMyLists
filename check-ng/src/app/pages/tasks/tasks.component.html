@@ -12,7 +12,7 @@
         <div id="list" *ngIf="tasks?.length" dnd-sortable-container [sortableData]="tasks" dnd-droppable>
             <div class="list-item" *ngFor="let task of tasks | tasksFilter: filterType | sortBy:'order_id'; let i = index;" dnd-sortable
                 [sortableIndex]="i" (onDropSuccess)="sort(tasks)">
-                <app-task class="task" [task]="task" (checkTask)="CheckTask($event)" (editTask)="TaskDialog($event)" (destroyTask)="DestroyTask($event)"></app-task>
+                <app-task class="task" [task]="task" (check)="CheckTask($event)" (edit)="TaskDialog($event)" (destroy)="DestroyTask($event)"></app-task>
                 <br>
             </div>
         </div>

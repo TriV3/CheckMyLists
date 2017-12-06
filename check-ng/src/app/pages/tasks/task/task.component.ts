@@ -9,9 +9,9 @@ import { Task } from '../../../shared/models/task';
 export class TaskComponent implements OnInit {
 
     @Input() task: Task;
-    @Output() checkTask = new EventEmitter<Task>();
-    @Output() editTask = new EventEmitter<Task>();
-    @Output() destroyTask = new EventEmitter<Task>();
+    @Output() check = new EventEmitter<Task>();
+    @Output() edit = new EventEmitter<Task>();
+    @Output() destroy = new EventEmitter<Task>();
 
     private _task: Task;
     constructor() { }
@@ -20,16 +20,14 @@ export class TaskComponent implements OnInit {
         this._task = this.task;
     }
 
-    CheckTask() {
-        this.checkTask.emit(this.task);
+    Check() {
+        this.check.emit(this.task);
     }
-    EditTask() {
-        console.log('Edit Task');
-
-        this.editTask.emit(this.task);
+    Edit() {
+        this.edit.emit(this.task);
     }
-    DestroyTask() {
-        this.destroyTask.emit(this.task);
+    Destroy() {
+        this.destroy.emit(this.task);
     }
 
 }

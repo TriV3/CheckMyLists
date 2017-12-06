@@ -20,15 +20,17 @@ import { MealsComponent } from './pages/meals/meals.component';
 import { MealComponent } from './pages/meals/meal/meal.component';
 
 import { TaskDialogComponent } from './shared/components/task-dialog/task-dialog.component';
+import { PurchaseDialogComponent } from './shared/components/purchase-dialog/purchase-dialog.component';
 
 import { ApiRequestsService } from './shared/services/api-requests.service';
 
 import { TasksFilterPipe } from './shared/filters/tasks-filter.pipe';
 import { ArraySortPipe } from './shared/filters/arraySort.pipe';
+import { ListContainerComponent } from './shared/components/list-container/list-container.component';
 
 
 const routes: Routes = [
-    { path: '', redirectTo: 'tasks', pathMatch: 'full' },
+    { path: '', redirectTo: 'purchases', pathMatch: 'full' },
     { path: 'meals', component: MealsComponent },
     { path: 'purchases', component: PurchasesComponent },
     { path: 'tasks', component: TasksComponent },
@@ -46,7 +48,9 @@ const routes: Routes = [
         PurchasesComponent,
         PurchaseComponent,
         MealsComponent,
-        MealComponent
+        MealComponent,
+        PurchaseDialogComponent,
+        ListContainerComponent
     ],
     imports: [
         BrowserModule,

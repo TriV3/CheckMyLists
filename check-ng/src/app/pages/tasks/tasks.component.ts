@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 import { TasksService } from '../../shared/services/tasks/tasks.service';
 import { Task } from '../../shared/models/task';
@@ -29,7 +28,7 @@ export class TasksComponent implements OnInit {
     modalTitle = 'New task';
 
 
-    constructor(private tasksService: TasksService, private route: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) { }
+    constructor(private tasksService: TasksService, private changeDetectorRef: ChangeDetectorRef) { }
 
     ngOnInit() {
         this.GetTasks();

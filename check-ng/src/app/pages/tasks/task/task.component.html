@@ -1,13 +1,13 @@
 <div class="task">
     <span class="grippy"></span>
-    <mat-checkbox class="task-chk" color="primary" type="checkbox" [checked]="task.isDone" (change)="CheckTask()">
+    <mat-checkbox class="value-chk" color="primary" type="checkbox" [checked]="task.isDone" (change)="Check()">
     </mat-checkbox>
 
-    <div class="task-text">
+    <div class="value-text">
         <span [class.completed]="task.isDone">{{ task.title }}</span>
     </div>
-    <div class="task-controls">
-        <span class="task-edit fa fa-pencil" (click)="EditTask()"></span>
-        <span class="task-delete fa fa-trash-o" (click)="DestroyTask()"></span>
+    <div class="value-controls">
+        <span class="value-edit fa fa-pencil" (click)="Edit()"></span>
+        <span class="value-delete fa fa-trash-o" (click)="Destroy()"></span>
     </div>
 </div>

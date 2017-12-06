@@ -11,7 +11,6 @@ export class PurchaseDialogComponent implements OnInit {
 
     @Input() showPrompt: boolean;
     @Input() title: string;
-    @Input() placeholder: string;
     @Input() okText: string;
     @Input() cancelText: string;
 
@@ -25,8 +24,8 @@ export class PurchaseDialogComponent implements OnInit {
         this.okText = 'OK';
         this.cancelText = 'Cancel';
         this.title = 'Create Purchase';
-        this.purchase = new Purchase('', -1);
-        this._purchase = new Purchase('', -1);
+        this.purchase = new Purchase('', '');
+        this._purchase = new Purchase('', '');
     }
 
     ngOnInit() {
@@ -38,7 +37,7 @@ export class PurchaseDialogComponent implements OnInit {
                 this.valueEmitted.emit(this.purchase);
             } else {
                 this.valueEmitted.emit(this._purchase);
-                this._purchase = new Purchase('', -1);
+                this._purchase = new Purchase('', '');
             }
         } else {
             this.valueEmitted.emit(null);
