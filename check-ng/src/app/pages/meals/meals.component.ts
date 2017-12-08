@@ -39,7 +39,6 @@ export class MealsComponent implements OnInit {
         });
     }
 
-
     Check(value: Meal) {
         this.mealsService.ToggleComplete(value).then(() => {
             return this.GetMeals();

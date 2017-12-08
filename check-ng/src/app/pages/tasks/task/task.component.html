@@ -1,13 +1,13 @@
 <div class="task">
     <span class="grippy" dnd-sortable-handle></span>
-    <mat-checkbox class="value-chk" color="primary" type="checkbox" [checked]="task.isDone" (change)="Check()">
+    <mat-checkbox class="value-chk" color="primary" type="checkbox" [checked]="task.isDone" (change)="onCheck.emit(task)">
     </mat-checkbox>
 
     <div class="value-text">
         <span [class.completed]="task.isDone">{{ task.title }}</span>
     </div>
     <div class="value-controls">
-        <span class="value-edit fa fa-pencil" (click)="Edit()"></span>
-        <span class="value-delete fa fa-trash-o" (click)="Destroy()"></span>
+        <span class="value-edit fa fa-pencil" (click)="onEdit.emit(task)"></span>
+        <span class="value-delete fa fa-trash-o" (click)="onDestroy.emit(task)"></span>
     </div>
 </div>

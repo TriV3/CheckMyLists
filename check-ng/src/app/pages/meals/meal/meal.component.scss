@@ -25,8 +25,14 @@
     .value-att {
         flex: 1 1 0%;
         padding-left: 5px;
-        .value-day {}
-        .value-time {flex: 1 1 0%;}
+        .value-day {
+            font-size: .8em;
+            color: rgb(133, 155, 151);
+        }
+        .value-time {
+            font-size: .8em;
+            color: rgb(172, 149, 149);
+        }
         .value-text {
             padding-left: 10px;
             flex: 1 1 0%;

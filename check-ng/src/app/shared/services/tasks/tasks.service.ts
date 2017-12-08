@@ -7,8 +7,8 @@ import { ApiRequestsService } from '../api-requests.service';
 @Injectable()
 export class TasksService {
 
-    public tasks: Task[] = [];
-    private TaskUrl = 'http://localhost:3000/Tasks';
+    public databaseData: Task[] = [];
+    private apiUrl = 'http://localhost:3000/Tasks';
 
     constructor(private api: ApiRequestsService) {
 
@@ -16,30 +16,30 @@ export class TasksService {
 
     get(query = '') {
         return new Promise(resolve => {
-            this.api.Get(this.TaskUrl).subscribe(
+            this.api.Get(this.apiUrl).subscribe(
                 value => {
-                    this.tasks = value.json();
+                    this.databaseData = value.json();
 
-                    let data;
+                    let result;
                     if (query === 'completed' || query === 'active') {
                         const isCompleted = query === 'completed';
-                        data = this.tasks.filter(task => task.isDone === isCompleted);
+                        result = this.databaseData.filter(val => val.isDone === isCompleted);
                     } else {
-                        data = this.tasks;
+                        result = this.databaseData;
                     }
-                    resolve(data);
+                    resolve(result);
                 },
                 error => {
-                    this.tasks = [];
-                    resolve(this.tasks);
+                    this.databaseData = [];
+                    resolve(this.databaseData);
                 });
 
         });
     }
 
-    add(data: Task) {
+    add(data) {
         return new Promise((resolve, reject) => {
-            this.api.Post(this.TaskUrl, data).subscribe(
+            this.api.Post(this.apiUrl, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -50,9 +50,9 @@ export class TasksService {
         });
     }
 
-    replace(data: Task) {
+    replace(data) {
         return new Promise((resolve, reject) => {
-            this.api.Patch(`${this.TaskUrl}/${data.id}`, data).subscribe(
+            this.api.Patch(`${this.apiUrl}/${data.id}`, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -62,17 +62,18 @@ export class TasksService {
                 });
         });
     }
-    replaceAll(data: Task[]) {
+
+    replaceAll(data) {
         return new Promise((resolve, reject) => {
-            data.forEach(task => {
-                this.replace(task);
+            data.forEach(val => {
+                this.replace(val);
             });
         });
     }
 
-    delete(data: Task) {
+    delete(data) {
         return new Promise((resolve, reject) => {
-            this.api.Delete(`${this.TaskUrl}/${data.id}`).subscribe(
+            this.api.Delete(`${this.apiUrl}/${data.id}`).subscribe(
                 value => {
                     resolve(data.id);
                 },
@@ -84,20 +85,20 @@ export class TasksService {
 
     deleteCompleted() {
         return new Promise((resolve, reject) => {
-            this.tasks.map(task => {
-                if (task.isDone) {
-                    this.delete(task)
-                        .then(() => resolve(this.tasks))
+            this.databaseData.map(value => {
+                if (value.isDone) {
+                    this.delete(value)
+                        .then(() => resolve(this.databaseData))
                         .catch(() => reject());
                 }
             });
         });
     }
 
-    InverseDoneTask(data: Task) {
+    ToggleComplete(data) {
         return new Promise((resolve, reject) => {
             data.isDone = !data.isDone;
-            this.api.Patch(`${this.TaskUrl}/${data.id}`, data).subscribe(
+            this.api.Patch(`${this.apiUrl}/${data.id}`, data).subscribe(
                 value => {
                     resolve(data);
                 },
@@ -108,14 +109,15 @@ export class TasksService {
         });
     }
 
-    setTodosState(state: boolean) {
+    setAllState(state: boolean) {
         return new Promise((resolve, reject) => {
-            this.tasks.forEach(task => {
-                task.isDone = state;
-                this.replace(task)
-                    .then(() => resolve(this.tasks))
+            this.databaseData.forEach(value => {
+                value.isDone = state;
+                this.replace(value)
+                    .then(() => resolve(this.databaseData))
                     .catch(() => reject());
             });
         });
     }
+
 }

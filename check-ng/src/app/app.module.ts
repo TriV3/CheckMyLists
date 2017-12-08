@@ -8,6 +8,7 @@ import {
     MatMenuModule, MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule,
     MatCheckboxModule, MatRadioModule, MatMenu, MatOption, MatSelect
 } from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { DndModule } from 'ng2-dnd';
 
@@ -67,7 +68,8 @@ const routes: Routes = [
         MatToolbarModule,
         MatIconModule,
         MatCheckboxModule,
-        MatRadioModule
+        MatRadioModule,
+        MatTabsModule
     ],
     providers: [ApiRequestsService],
     bootstrap: [AppComponent]
