@@ -35,8 +35,8 @@ export class TasksComponent implements OnInit {
     }
 
     TaskDialog(task: Task = null) {
-        this.okButtonText = 'Create task';
-        this.modalTitle = 'New';
+        this.okButtonText = 'Create';
+        this.modalTitle = 'New task';
         this.fieldValue = '';
         this.editingTask = task;
         if (task) {

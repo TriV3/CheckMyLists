@@ -6,7 +6,7 @@ import { Purchase } from '../../shared/models/purchase';
     selector: 'app-purchases',
     templateUrl: './purchases.component.html',
     styleUrls: ['./purchases.component.scss'],
-    providers: [PurchasesService],
+    providers: [PurchasesService]
 })
 export class PurchasesComponent implements OnInit {
 
@@ -75,8 +75,8 @@ export class PurchasesComponent implements OnInit {
     }
 
     Dialog(value: Purchase) {
-        this.okButtonText = 'Create task';
-        this.modalTitle = 'New';
+        this.okButtonText = 'Create';
+        this.modalTitle = 'New purchase';
         this.fieldValue = '';
         this.editingPurchase = value;
         if (value) {

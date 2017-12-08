@@ -1,3 +1,22 @@
-<p>
-  meal works!
-</p>
+<div class="meal">
+    <span class="grippy" dnd-sortable-handle></span>
+    <mat-checkbox class="value-chk" color="primary" type="checkbox" [checked]="meal.isDone" (change)="onCheck.emit(meal)">
+    </mat-checkbox>
+
+    <div class="value-att">
+        <div>
+            <span class="value-day" [class.completed]="meal.isDone">{{ DayList[meal.dayNumber] }}</span>
+            <span class="value-time" [class.completed]="meal.isDone">{{ TimeList[meal.dayTime] }}</span>
+        </div>
+        <div>
+            <div class="value-text">
+                <span [class.completed]="meal.isDone">{{ meal.title }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="value-controls">
+        <span class="value-edit fa fa-pencil" (click)="onEdit.emit(meal)"></span>
+        <span class="value-delete fa fa-trash-o" (click)="onDestroy.emit(meal)"></span>
+    </div>
+</div>

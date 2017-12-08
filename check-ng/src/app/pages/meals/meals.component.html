@@ -1,5 +1,10 @@
-<p>
-    meals works!
-</p>
+<div id="mealapp">
+    <h1 id="title">{{ title }}</h1>
+    <app-list-container [values]="meals" [type]="'meals'" [activeElements]="activeMeals"
+    (onCheck)="Check($event)" (onEdit)="Dialog($event)" (onDestroy)="Destroy($event)"
+    (onSetAllState)="SetAllState($event)" (onDialog)="Dialog($event)" (onSort)="Sort($event)" (onClearCompleted)="ClearCompleted()"></app-list-container>
+</div>
 
-<app-meal></app-meal>
+<app-meal-dialog [title]="modalTitle" [okText]="okButtonText" [meal]="editingMeal"
+[showPrompt]="showDialog"(valueEmitted)="CommitDialog($event)">
+</app-meal-dialog>

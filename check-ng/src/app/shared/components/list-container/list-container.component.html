@@ -8,9 +8,10 @@
     </div>
 
     <div id="list" *ngIf="values?.length" dnd-sortable-container [sortableData]="values" dnd-droppable>
-        <div class="list-item" *ngFor="let value of values | tasksFilter: filterType | sortBy:'order_id'; let i = index;" dnd-sortable
+        <div class="list-item" *ngFor="let value of values | completeFilter: filterType | sortBy:'order_id'; let i = index;" dnd-sortable
             [sortableIndex]="i" (onDropSuccess)="onSort.emit(values)">
-            <app-purchase class="element" [purchase]="value" (onCheck)="onCheck.emit($event)" (onEdit)="onEdit.emit($event)" (onDestroy)="onDestroy.emit($event)"></app-purchase>
+            <app-purchase *ngIf="type === 'purchases'" class="element" [purchase]="value" (onCheck)="onCheck.emit($event)" (onEdit)="onEdit.emit($event)" (onDestroy)="onDestroy.emit($event)"></app-purchase>
+            <app-meal *ngIf="type === 'meals'" class="element" [meal]="value" (onCheck)="onCheck.emit($event)" (onEdit)="onEdit.emit($event)" (onDestroy)="onDestroy.emit($event)"></app-meal>
             <br>
         </div>
     </div>

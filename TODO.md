@@ -14,11 +14,12 @@
     ✔ Create global list container component @done (December 6th 2017, 15:06)
     ✔ Create a list for purchases that uses global container @done (December 6th 2017, 15:06)
     ✔ Implement REST api for purchases @done (December 6th 2017, 15:06)
-    ☐ Rename 'tasks-filter' pipe to 'complete-filter'
-    ☐ Create a model for meals
-    ☐ Create a list for cooking that uses global container
-    ☐ Implement REST api for cooking
+    ✔ Rename 'tasks-filter' pipe to 'complete-filter' @done (December 7th 2017, 8:01)
+    ✔ Create a model for meals @done (December 7th 2017, 8:39)
+    ✔ Create a list for meals that uses global container @done (December 7th 2017, 9:05)
+    ✔ Implement REST api for meals @done (December 8th 2017, 13:12)
     ☐ Make tasks list to use the global list container
+    ☐ Add an area to write meals note (ideas of meals)
     ☐ Use i18n for english/french languages
 
 ## NativeScript

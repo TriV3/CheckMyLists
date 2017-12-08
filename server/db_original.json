@@ -45,5 +45,30 @@
             "isDone": false,
             "order_id": 2
         }
+    ],
+    "Meals": [{
+            "id": 1,
+            "title": "Poulet",
+            "dayNumber": 0,
+            "dayTime": 1,
+            "isDone": false,
+            "order_id": 0
+        },
+        {
+            "id": 2,
+            "title": "Crevette",
+            "dayNumber": 1,
+            "dayTime": 1,
+            "isDone": false,
+            "order_id": 1
+        },
+        {
+            "id": 3,
+            "title": "Ronald",
+            "dayNumber": 2,
+            "dayTime": 0,
+            "isDone": false,
+            "order_id": 1
+        }
     ]
 }

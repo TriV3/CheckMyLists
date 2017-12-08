@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Meal } from '../../models/meal';
+import { Purchase } from '../../models/purchase';
+import { Task } from '../../models/task';
 
 @Component({
     selector: 'app-list-container',
@@ -8,7 +11,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ListContainerComponent implements OnInit {
 
     @Input() values: Array<any>;
-    @Input()  activeElements: number;
+    @Input() type: string;
+    @Input() activeElements: number;
     @Output() onCheck = new EventEmitter<any>();
     @Output() onEdit = new EventEmitter<any>();
     @Output() onDestroy = new EventEmitter<any>();
@@ -16,12 +20,16 @@ export class ListContainerComponent implements OnInit {
     @Output() onDialog = new EventEmitter<any>();
     @Output() onSort = new EventEmitter<any>();
     @Output() onClearCompleted = new EventEmitter<any>();
+
     public areAllSelected = false;
 
     public filterType = 'All';
 
     private editingElement: any = null;
 
+    public isMeal = false;
+    public isPurchase = false;
+    public isTask = false;
 
     constructor() { }
 

@@ -1,6 +1,6 @@
 <div id="purchaseapp">
     <h1 id="title">{{ title }}</h1>
-    <app-list-container [values]="purchases" [activeElements]="activePurchases"
+    <app-list-container [values]="purchases" [type]="'purchases'" [activeElements]="activePurchases"
     (onCheck)="Check($event)" (onEdit)="Dialog($event)" (onDestroy)="Destroy($event)"
     (onSetAllState)="SetAllState($event)" (onDialog)="Dialog($event)" (onSort)="Sort($event)" (onClearCompleted)="ClearCompleted()"></app-list-container>
 </div>

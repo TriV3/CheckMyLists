@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatMenuModule, MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule,
-    MatCheckboxModule, MatRadioModule, MatMenu
+    MatCheckboxModule, MatRadioModule, MatMenu, MatOption, MatSelect
 } from '@angular/material';
 
 import { DndModule } from 'ng2-dnd';
@@ -24,17 +24,18 @@ import { PurchaseDialogComponent } from './shared/components/purchase-dialog/pur
 
 import { ApiRequestsService } from './shared/services/api-requests.service';
 
-import { TasksFilterPipe } from './shared/filters/tasks-filter.pipe';
+import { CompleteFilterPipe } from './shared/filters/complete-filter.pipe';
 import { ArraySortPipe } from './shared/filters/arraySort.pipe';
 import { ListContainerComponent } from './shared/components/list-container/list-container.component';
+import { MealDialogComponent } from './shared/components/meal-dialog/meal-dialog.component';
 
 
 const routes: Routes = [
-    { path: '', redirectTo: 'purchases', pathMatch: 'full' },
+    { path: '', redirectTo: 'meals', pathMatch: 'full' },
     { path: 'meals', component: MealsComponent },
     { path: 'purchases', component: PurchasesComponent },
     { path: 'tasks', component: TasksComponent },
-    { path: '**', redirectTo: 'tasks', pathMatch: 'full' }
+    { path: '**', redirectTo: 'meals', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -42,7 +43,7 @@ const routes: Routes = [
         AppComponent,
         TasksComponent,
         TaskDialogComponent,
-        TasksFilterPipe,
+        CompleteFilterPipe,
         ArraySortPipe,
         TaskComponent,
         PurchasesComponent,
@@ -50,7 +51,8 @@ const routes: Routes = [
         MealsComponent,
         MealComponent,
         PurchaseDialogComponent,
-        ListContainerComponent
+        ListContainerComponent,
+        MealDialogComponent
     ],
     imports: [
         BrowserModule,

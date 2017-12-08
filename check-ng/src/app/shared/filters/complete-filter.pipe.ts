@@ -1,17 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'tasksFilter',
-    pure: false // add in this line, update value when we change filter
+    name: 'completeFilter',
+    pure: false
 })
-export class TasksFilterPipe implements PipeTransform {
+export class CompleteFilterPipe implements PipeTransform {
 
     transform(items: any[], filterType: string): any[] {
         if (!items) { return []; }
         if (!filterType) { return items; }
 
         filterType = filterType.toLowerCase();
-        // if (filterType === 'all') { return items; }
 
         if (filterType === 'completed') {
             return items.filter(it => {
