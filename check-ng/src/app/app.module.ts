@@ -24,16 +24,19 @@ import { TaskDialogComponent } from './shared/components/task-dialog/task-dialog
 import { PurchaseDialogComponent } from './shared/components/purchase-dialog/purchase-dialog.component';
 
 import { ApiRequestsService } from './shared/services/api-requests.service';
+import { GlobalService } from './shared/services/global.service';
 
 import { CompleteFilterPipe } from './shared/filters/complete-filter.pipe';
 import { ArraySortPipe } from './shared/filters/arraySort.pipe';
 import { ListContainerComponent } from './shared/components/list-container/list-container.component';
 import { MealDialogComponent } from './shared/components/meal-dialog/meal-dialog.component';
+import { NotesComponent } from './pages/notes/notes.component';
 
 
 const routes: Routes = [
     { path: '', redirectTo: 'meals', pathMatch: 'full' },
     { path: 'meals', component: MealsComponent },
+    { path: 'notes', component: NotesComponent },
     { path: 'purchases', component: PurchasesComponent },
     { path: 'tasks', component: TasksComponent },
     { path: '**', redirectTo: 'meals', pathMatch: 'full' }
@@ -53,7 +56,8 @@ const routes: Routes = [
         MealComponent,
         PurchaseDialogComponent,
         ListContainerComponent,
-        MealDialogComponent
+        MealDialogComponent,
+        NotesComponent
     ],
     imports: [
         BrowserModule,
@@ -71,7 +75,7 @@ const routes: Routes = [
         MatRadioModule,
         MatTabsModule
     ],
-    providers: [ApiRequestsService],
+    providers: [ApiRequestsService, GlobalService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

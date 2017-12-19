@@ -19,7 +19,9 @@
     ✔ Create a list for meals that uses global container @done (December 7th 2017, 9:05)
     ✔ Implement REST api for meals @done (December 8th 2017, 13:12)
     ✔ Make tasks list to use the global list container @done (December 8th 2017, 13:43)
-    ☐ Add an area to write meals note (ideas of meals)
+    ✔ Add an area to write notes @done (December 19th 2017, 10:34)
+	✔ Create a model for the note @done (December 19th 2017, 10:34)
+    ✔ Implement REST api for note @done (December 19th 2017, 10:34)
     ☐ Use i18n for english/french languages
 
 ## NativeScript

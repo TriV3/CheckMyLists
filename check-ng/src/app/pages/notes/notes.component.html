@@ -1,0 +1,14 @@
+<div id="noteapp">
+    <h1 id="title">{{ title }}</h1>
+
+    <div id="box" class="effect">
+        <div id="char-buttons">
+            <button mat-button (mousedown)="AddChar(noteTextArea, '•')" (mouseup)="setSelectionRange(noteTextArea, carretPosition, carretPosition)">•</button>
+            <button mat-button (mousedown)="AddChar(noteTextArea, '☐')">☐</button>
+            <button mat-button (mousedown)="AddChar(noteTextArea, '✔')">✔</button>
+            <button mat-button (mousedown)="AddChar(noteTextArea, '☺')">☺</button>
+        </div>
+        <textarea #noteTextArea id="note-area" matInput [(ngModel)]="note.text" (blur)="Blur()" (keydown.Tab)="AddTab($event, noteTextArea)"
+            (keyup.Tab)="setSelectionRange(noteTextArea, carretPosition, carretPosition)"></textarea>
+    </div>
+</div>

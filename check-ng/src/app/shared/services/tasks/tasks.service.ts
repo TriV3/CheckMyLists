@@ -1,17 +1,17 @@
 import { Injectable, Inject } from '@angular/core';
 import { Task } from '../../models/task';
 import { ApiRequestsService } from '../api-requests.service';
-
+import { GlobalService } from '../global.service';
 
 
 @Injectable()
 export class TasksService {
 
     public databaseData: Task[] = [];
-    private apiUrl = 'http://localhost:3000/Tasks';
+    private apiUrl = 'Tasks';
 
-    constructor(private api: ApiRequestsService) {
-
+    constructor(private api: ApiRequestsService, private gs: GlobalService) {
+        this.apiUrl = this.gs.apiBaseUrl + this.apiUrl;
     }
 
     get(query = '') {

@@ -1,0 +1,74 @@
+#noteapp {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    padding: 10px 0 10px 0;
+    #title {
+        height: 10%;
+        margin: 0;
+        text-align: center;
+        font-size: 3em;
+    }
+    #box {
+        box-sizing: border-box;
+        height: 90%;
+        width: 80%;
+        margin: auto;
+        padding: 15px;
+        max-width: 600px;
+        background-color: white;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        position: relative;
+        &.effect {
+            position: relative;
+            -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        }
+        &.effect:before,
+        &.effect:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            top: 10px;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            -moz-border-radius: 100px / 10px;
+            border-radius: 100px / 10px;
+        }
+        &.effect:after {
+            right: 10px;
+            left: auto;
+            -webkit-transform: skew(8deg) rotate(3deg);
+            -moz-transform: skew(8deg) rotate(3deg);
+            -ms-transform: skew(8deg) rotate(3deg);
+            -o-transform: skew(8deg) rotate(3deg);
+            transform: skew(8deg) rotate(3deg);
+        }
+
+        #char-buttons {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            button {
+                font-size: 1.5em;
+                padding: 0;
+            }
+        }
+
+        #note-area {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-size: 1.2em;
+        }
+    }
+}

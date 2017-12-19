@@ -91,8 +91,7 @@
             "id": 4
         }
     ],
-    "MealsNote": {
-        "id": 0,
-        "note": ""
+    "Note": {
+        "text": "☐ Test de la mort     qui tue (ou pas)\n☐ Deuxième ligne...            \n✔ Test de bullet    ☺☐✔☺•"
     }
 }
