@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+
+import { TranslateService } from '../../translate';
 
 import { TasksService } from '../../shared/services/tasks/tasks.service';
 import { Task } from '../../shared/models/task';
@@ -10,7 +12,7 @@ import { Task } from '../../shared/models/task';
     styleUrls: ['./tasks.component.scss'],
     providers: [TasksService],
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, OnDestroy {
 
     public title = 'Tasks';
     public tasks: Task[];
@@ -20,18 +22,28 @@ export class TasksComponent implements OnInit {
 
     public filterType = 'All';
 
-    private editingTask: any = null;
+    public editingTask: any = null;
 
     showDialog = false;
     fieldValue = '';
     okButtonText = 'Create task';
     modalTitle = 'New task';
 
+    private translateSubscription: any;
 
-    constructor(private tasksService: TasksService, private changeDetectorRef: ChangeDetectorRef) { }
+    constructor(private tasksService: TasksService,
+        private changeDetectorRef: ChangeDetectorRef,
+        private _translate: TranslateService) { }
 
     ngOnInit() {
         this.GetTasks();
+        this.title = this._translate.instant('tasks', null);
+
+        this.translateSubscription = this.subscribeToLangChanged();
+    }
+
+    ngOnDestroy() {
+        this.translateSubscription.unsubscribe();
     }
 
     GetTasks(query = '') {
@@ -77,13 +89,13 @@ export class TasksComponent implements OnInit {
     }
 
     Dialog(value: Task = null) {
-        this.okButtonText = 'Create';
-        this.modalTitle = 'New task';
+        this.okButtonText = this._translate.instant('create', null);
+        this.modalTitle = this._translate.instant('create-task', null);
         this.fieldValue = '';
         this.editingTask = value;
         if (value) {
-            this.okButtonText = 'Edit';
-            this.modalTitle = 'Edit task';
+            this.okButtonText = this._translate.instant('edit', null);
+            this.modalTitle = this._translate.instant('edit-task', null);
         }
         this.showDialog = true;
     }
@@ -117,5 +129,16 @@ export class TasksComponent implements OnInit {
         this.HideDialog();
     }
 
+    subscribeToLangChanged() {
+        // refresh text
+        // please unsubribe during destroy
+        return this._translate.onLangChanged.subscribe(x => this.refreshText());
+    }
+
+    refreshText() {
+        // refresh translation when language change
+        this.title = this._translate.instant('meals', null);
+
+    }
 
 }

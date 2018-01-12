@@ -8,8 +8,8 @@ import { Meal } from '../../models/meal';
 })
 export class MealDialogComponent implements OnInit, OnChanges {
 
-    public DayList = ['Monday', 'Tuesday', 'Wednesday', 'Thirsday', 'Friday', 'Saturday', 'Sunday'];
-    public TimeList = ['Lunch', 'Dinner'];
+    public DayList = ['monday', 'tuesday', 'wednesday', 'thirsday', 'friday', 'saturday', 'sunday'];
+    public TimeList = ['lunch', 'dinner'];
 
     @Input() showPrompt: boolean;
     @Input() title: string;
@@ -26,10 +26,6 @@ export class MealDialogComponent implements OnInit, OnChanges {
 
     private _meal: Meal;
     constructor() {
-        this.okText = 'OK';
-        this.cancelText = 'Cancel';
-        this.title = 'Create Meal';
-        // this.meal = new Meal();
         this._meal = new Meal();
     }
 
@@ -52,8 +48,6 @@ export class MealDialogComponent implements OnInit, OnChanges {
     }
 
     emitValue(b: boolean) {
-        console.log(this.meal);
-
         if (b) {
             if (this.meal) {
                 this.meal.dayNumber = this.DayList.indexOf(this.selectedDay);

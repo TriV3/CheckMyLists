@@ -5,27 +5,27 @@
         </mat-toolbar>
         <mat-card-content *ngIf="purchase !== null">
             <div class="full-width">
-                <input class="full-width" matInput placeholder="What do you need to buy?" [(ngModel)]="purchase.title"
+                <input class="full-width" matInput placeholder="{{ 'What do you need to buy?' | translate }}" [(ngModel)]="purchase.title"
                     (keyup.enter)="emitValue(true)" (keyup.escape)="emitValue(false)" />
             </div>
             <div class="full-width">
-                <input class="full-width" matInput placeholder="price"  [(ngModel)]="purchase.price" (keyup.enter)="emitValue(true)"
+                <input class="full-width" matInput placeholder="{{ 'price' | translate}}"  [(ngModel)]="purchase.price" (keyup.enter)="emitValue(true)"
                     (keyup.escape)="emitValue(false)" />
             </div>
         </mat-card-content>
         <mat-card-content *ngIf="purchase === null">
             <div class="full-width">
-                <input class="full-width" matInput placeholder="What do you need to buy?" [(ngModel)]="_purchase.title"
+                <input class="full-width" matInput placeholder="{{ 'What do you need to buy?' | translate }}" [(ngModel)]="_purchase.title"
                     (keyup.enter)="emitValue(true)" (keyup.escape)="emitValue(false)" />
             </div>
             <div class="full-width">
-                <input class="full-width" matInput placeholder="price"  [(ngModel)]="_purchase.price" (keyup.enter)="emitValue(true)"
+                <input class="full-width" matInput placeholder="{{ 'price' | translate}}"  [(ngModel)]="_purchase.price" (keyup.enter)="emitValue(true)"
                     (keyup.escape)="emitValue(false)" />
             </div>
         </mat-card-content>
         <mat-card-actions class="center">
-            <button mat-button (click)="emitValue(false)" color="primary">{{cancelText}}</button>
-            <button mat-raised-button (click)="emitValue(true)" color="primary">{{okText}}</button>
+            <button mat-button (click)="emitValue(false)" color="primary">{{ 'cancel' | translate}}</button>
+            <button mat-raised-button (click)="emitValue(true)" color="primary">{{ okText }}</button>
         </mat-card-actions>
     </mat-card>
 </div>

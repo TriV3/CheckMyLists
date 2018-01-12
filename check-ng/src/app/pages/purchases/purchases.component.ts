@@ -1,14 +1,16 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 import { PurchasesService } from '../../shared/services/purchases/purchases.service';
 import { Purchase } from '../../shared/models/purchase';
+
+import { TranslateService } from '../../translate';
 @Component({
     selector: 'app-purchases',
     templateUrl: './purchases.component.html',
     styleUrls: ['./purchases.component.scss'],
     providers: [PurchasesService]
 })
-export class PurchasesComponent implements OnInit {
+export class PurchasesComponent implements OnInit, OnDestroy {
 
     public title = 'Purchases';
     public purchases: Purchase[];
@@ -18,17 +20,28 @@ export class PurchasesComponent implements OnInit {
 
     public filterType = 'All';
 
-    private editingPurchase: any = null;
+    public editingPurchase: any = null;
 
     showDialog = false;
     fieldValue = '';
     okButtonText = 'Create purchase';
     modalTitle = 'New purchase';
 
-    constructor(private purchasesService: PurchasesService, private changeDetectorRef: ChangeDetectorRef) { }
+    private translateSubscription: any;
+
+    constructor(private purchasesService: PurchasesService,
+        private changeDetectorRef: ChangeDetectorRef,
+        private _translate: TranslateService) { }
 
     ngOnInit() {
         this.GetPurchases();
+        this.title = this._translate.instant('purchases', null);
+
+        this.translateSubscription = this.subscribeToLangChanged();
+    }
+
+    ngOnDestroy() {
+        this.translateSubscription.unsubscribe();
     }
 
     GetPurchases(query = '') {
@@ -75,13 +88,13 @@ export class PurchasesComponent implements OnInit {
     }
 
     Dialog(value: Purchase) {
-        this.okButtonText = 'Create';
-        this.modalTitle = 'New purchase';
+        this.okButtonText = this._translate.instant('create', null);
+        this.modalTitle = this._translate.instant('create-purchase', null);
         this.fieldValue = '';
         this.editingPurchase = value;
         if (value) {
-            this.okButtonText = 'Edit';
-            this.modalTitle = 'Edit purchase';
+            this.okButtonText = this._translate.instant('edit', null);
+            this.modalTitle = this._translate.instant('edit-purchase', null);
         }
         this.showDialog = true;
     }
@@ -115,4 +128,18 @@ export class PurchasesComponent implements OnInit {
         }
         this.HideDialog();
     }
+
+
+    subscribeToLangChanged() {
+        // refresh text
+        // please unsubribe during destroy
+        return this._translate.onLangChanged.subscribe(x => this.refreshText());
+    }
+
+    refreshText() {
+        // refresh translation when language change
+        this.title = this._translate.instant('purchases', null);
+
+    }
+
 }

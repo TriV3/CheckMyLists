@@ -1,0 +1,42 @@
+export const LANG_FR_NAME = 'fr';
+
+export const LANG_FR_TRANS = {
+    'hello world': 'Bonjour le monde',
+    'hello greet': 'Bonjour, %0 %1!', // two placeholder
+    'well done': 'Bien joué %0', // one placeholder
+
+    'tasks': 'Tâches',
+    'purchases': 'Achats',
+    'meals': 'Repas',
+    'notes': 'Notes',
+    'about': 'A propos',
+    'cancel': 'Annuler',
+    'ok': 'OK',
+    'monday': 'Lundi',
+    'tuesday': 'Mardi',
+    'wednesday': 'Mercredi',
+    'thirsday': 'Jeudi',
+    'friday': 'Vendredi',
+    'saturday': 'Samedi',
+    'sunday': 'Dimanche',
+    'lunch': 'Midi',
+    'dinner': 'Soir',
+    'create': 'Créer',
+    'edit': 'Modifier',
+    'create-meal': 'Créer un repas',
+    'edit-meal': 'Modifier un repas',
+    'create-purchase': 'Créer un achat',
+    'edit-purchase': 'Modifier un achat',
+    'create-task': 'Créer une tâche',
+    'edit-task': 'Modifier une tâche',
+    'item left': 'élément restant',
+    'items left': 'éléments restant',
+    'all': 'Tous',
+    'active': 'Actifs',
+    'complete': 'Complétés',
+    'clear completed': 'Effacer complétés',
+    'What do you need to cook?': 'Que voulez-vous cuisiner?',
+    'What do you need to buy?': 'Que voulez-vous acheter?',
+    'price': 'Prix',
+    'What do you need to do?': 'Que voulez-vous faire?',
+};

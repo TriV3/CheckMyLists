@@ -4,13 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './translate';
 import {
     MatMenuModule, MatButtonModule, MatCardModule, MatToolbarModule, MatIconModule,
     MatCheckboxModule, MatRadioModule, MatMenu, MatOption, MatSelect
 } from '@angular/material';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { DndModule } from 'ng2-dnd';
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
@@ -57,7 +59,8 @@ const routes: Routes = [
         PurchaseDialogComponent,
         ListContainerComponent,
         MealDialogComponent,
-        NotesComponent
+        NotesComponent,
+        TranslatePipe
     ],
     imports: [
         BrowserModule,
@@ -73,9 +76,13 @@ const routes: Routes = [
         MatIconModule,
         MatCheckboxModule,
         MatRadioModule,
-        MatTabsModule
+        MatTabsModule,
+        TextareaAutosizeModule
     ],
-    providers: [ApiRequestsService, GlobalService],
+    providers: [ApiRequestsService,
+        GlobalService,
+        TRANSLATION_PROVIDERS,
+        TranslateService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

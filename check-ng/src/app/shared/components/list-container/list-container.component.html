@@ -25,14 +25,22 @@
     </div>
 
     <div id="footer">
-        <div id="left"> {{ activeElements }} item left</div>
+        <div id="left">
+            <ng-container *ngIf="activeElements > 1; else elseTemplate">
+                {{ activeElements }} {{ 'items left' | translate}}
+            </ng-container>
+            <ng-template #elseTemplate>
+                {{ activeElements }} {{ 'item left' | translate}}
+            </ng-template>
+
+            </div>
         <div id="filters">
-            <div class="filter" [ngClass]="(filterType=='All')?'filterSelected':'filterNotSelected'" (click)="Filter('All')">All</div>
-            <div class="filter" [ngClass]="(filterType=='Active')?'filterSelected':'filterNotSelected'" (click)="Filter('Active')">Active</div>
-            <div class="filter" [ngClass]="(filterType=='Completed')?'filterSelected':'filterNotSelected'" (click)="Filter('Completed')">Completed</div>
+            <div class="filter" [ngClass]="(filterType=='All')?'filterSelected':'filterNotSelected'" (click)="Filter('All')">{{ 'all' | translate }}</div>
+            <div class="filter" [ngClass]="(filterType=='Active')?'filterSelected':'filterNotSelected'" (click)="Filter('Active')">{{ 'active' | translate }}</div>
+            <div class="filter" [ngClass]="(filterType=='Completed')?'filterSelected':'filterNotSelected'" (click)="Filter('Completed')">{{ 'complete' | translate }}</div>
         </div>
         <div id="clear" *ngIf="activeElements < values?.length">
-            <span class="btn-clear" (click)="onClearCompleted.emit()">Clear completed</span>
+            <span class="btn-clear" (click)="onClearCompleted.emit()">{{ 'clear completed' | translate }}</span>
         </div>
     </div>
 </div>

@@ -8,8 +8,8 @@ import { Meal } from '../../../shared/models/meal';
 })
 export class MealComponent implements OnInit {
 
-    public DayList = ['Monday', 'Tuesday', 'Wednesday', 'Thirsday', 'Friday', 'Saturday', 'Sunday'];
-    public TimeList = ['Lunch', 'Dinner'];
+    public DayList = ['monday', 'tuesday', 'wednesday', 'thirsday', 'friday', 'saturday', 'sunday'];
+    public TimeList = ['lunch', 'dinner'];
 
     @Input() meal: Meal;
     @Output() onCheck = new EventEmitter<Meal>();

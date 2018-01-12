@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+
+import { TranslateService } from '../../translate';
 
 import { MealsService } from '../../shared/services/meals/meals.service';
 import { Meal } from '../../shared/models/meal';
@@ -9,7 +11,7 @@ import { Meal } from '../../shared/models/meal';
     styleUrls: ['./meals.component.scss'],
     providers: [MealsService]
 })
-export class MealsComponent implements OnInit {
+export class MealsComponent implements OnInit, OnDestroy {
     public title = 'Meals';
     public meals: Meal[];
     public activeMeals: number;
@@ -18,17 +20,28 @@ export class MealsComponent implements OnInit {
 
     public filterType = 'All';
 
-    private editingMeal: any = null;
+    public editingMeal: any = null;
 
     showDialog = false;
     fieldValue = '';
     okButtonText = 'Create meal';
     modalTitle = 'New meal';
 
-    constructor(private mealsService: MealsService, private changeDetectorRef: ChangeDetectorRef) { }
+    private translateSubscription: any;
+
+    constructor(private mealsService: MealsService,
+        private changeDetectorRef: ChangeDetectorRef,
+        private _translate: TranslateService) { }
 
     ngOnInit() {
         this.GetMeals();
+        this.title = this._translate.instant('meals', null);
+
+        this.translateSubscription = this.subscribeToLangChanged();
+    }
+
+    ngOnDestroy() {
+        this.translateSubscription.unsubscribe();
     }
 
     GetMeals(query = '') {
@@ -74,13 +87,13 @@ export class MealsComponent implements OnInit {
     }
 
     Dialog(value: Meal) {
-        this.okButtonText = 'Create';
-        this.modalTitle = 'New meal';
+        this.okButtonText = this._translate.instant('create', null);
+        this.modalTitle = this._translate.instant('create-meal', null);
         this.fieldValue = '';
         this.editingMeal = value;
         if (value) {
-            this.okButtonText = 'Edit';
-            this.modalTitle = 'Edit meal';
+            this.okButtonText = this._translate.instant('edit', null);
+            this.modalTitle = this._translate.instant('edit-meal', null);
         }
         this.showDialog = true;
     }
@@ -112,6 +125,19 @@ export class MealsComponent implements OnInit {
             }
         }
         this.HideDialog();
+    }
+
+
+    subscribeToLangChanged() {
+        // refresh text
+        // please unsubribe during destroy
+        return this._translate.onLangChanged.subscribe(x => this.refreshText());
+    }
+
+    refreshText() {
+        // refresh translation when language change
+        this.title = this._translate.instant('meals', null);
+
     }
 
 }

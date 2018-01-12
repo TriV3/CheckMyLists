@@ -5,12 +5,12 @@
 
     <div class="value-att">
         <div>
-            <span class="value-day" [class.completed]="meal.isDone">{{ DayList[meal.dayNumber] }}</span>
-            <span class="value-time" [class.completed]="meal.isDone">{{ TimeList[meal.dayTime] }}</span>
+            <span class="value-day" [class.completed]="meal.isDone">{{ DayList[meal.dayNumber] | translate }}</span>
+            <span class="value-time" [class.completed]="meal.isDone">{{ TimeList[meal.dayTime] | translate }}</span>
         </div>
         <div>
             <div class="value-text">
-                <span [class.completed]="meal.isDone">{{ meal.title }}</span>
+                <span [class.completed]="meal.isDone" class="multi_lines_text">{{ meal.title }}</span>
             </div>
         </div>
     </div>

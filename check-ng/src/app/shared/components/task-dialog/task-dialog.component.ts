@@ -11,7 +11,6 @@ export class TaskDialogComponent implements OnInit {
 
     @Input() showPrompt: boolean;
     @Input() title: string;
-    @Input() placeholder: string;
     @Input() okText: string;
     @Input() cancelText: string;
 

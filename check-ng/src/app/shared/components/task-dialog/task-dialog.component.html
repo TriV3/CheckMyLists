@@ -5,14 +5,14 @@
         </mat-toolbar>
         <mat-card-content>
             <div class="full-width">
-                <input *ngIf="task !== null" class="full-width" matInput [placeholder]="placeholder" [(ngModel)]="task.title" (keyup.enter)="emitValue(true)" (keyup.escape)="emitValue(false)"
+                <input *ngIf="task !== null" class="full-width" matInput placeholder="{{ 'What do you need to do?' | translate }}" [(ngModel)]="task.title" (keyup.enter)="emitValue(true)" (keyup.escape)="emitValue(false)"
                 />
-                <input *ngIf="task === null" class="full-width" matInput [placeholder]="placeholder" [(ngModel)]="_task.title" (keyup.enter)="emitValue(true)" (keyup.escape)="emitValue(false)"
+                <input *ngIf="task === null" class="full-width" matInput placeholder="{{ 'What do you need to do?' | translate }}" [(ngModel)]="_task.title" (keyup.enter)="emitValue(true)" (keyup.escape)="emitValue(false)"
                 />
             </div>
         </mat-card-content>
         <mat-card-actions class="center">
-            <button mat-button (click)="emitValue(false)" color="primary">{{cancelText}}</button>
+            <button mat-button (click)="emitValue(false)" color="primary">{{ 'cancel' | translate }}</button>
             <button mat-raised-button (click)="emitValue(true)" color="primary">{{okText}}</button>
         </mat-card-actions>
     </mat-card>

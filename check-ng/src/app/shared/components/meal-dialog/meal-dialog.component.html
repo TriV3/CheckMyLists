@@ -4,40 +4,34 @@
             {{ title }}
         </mat-toolbar>
         <mat-card-content *ngIf="meal !== null">
-            <div class="full-width">
-                <input class="full-width" matInput placeholder="price" [(ngModel)]="meal.priceprice" (keyup.enter)="emitValue(true)"
-                    (keyup.escape)="emitValue(false)" />
-            </div>
             <select [(ngModel)]="selectedDay">
-                <option *ngFor="let day of DayList" [value]="day">{{ day }}</option>
+                <option *ngFor="let day of DayList" [value]="day">{{ day | translate }}</option>
             </select>
             <select [(ngModel)]="selectedTime">
-                <option *ngFor="let time of TimeList" [value]="time">{{ time }}</option>
+                <option *ngFor="let time of TimeList" [value]="time">{{ time | translate }}</option>
             </select>
             <div class="full-width">
-                <input class="full-width" matInput placeholder="What do you need to cook?" [(ngModel)]="meal.title"
-                    (keyup.enter)="emitValue(true)" (keyup.escape)="emitValue(false)" />
+                <textarea autosize class="full-width" matInput placeholder="{{ 'What do you need to cook?' | translate }}" matTextareaAutosize matAutosizeMinRows="1"
+                        matAutosizeMaxRows="5" [(ngModel)]="meal.title" (keyup.escape)="emitValue(false)"></textarea>
+                <!-- <textarea autosize placeholder="{{ 'What do you need to cook?' | translate }}" [(ngModel)]="meal.title" (keyup.escape)="emitValue(false)"></textarea> -->
             </div>
         </mat-card-content>
         <mat-card-content *ngIf="meal === null">
-            <div class="full-width">
-                <input class="full-width" matInput placeholder="price" [(ngModel)]="_meal.price" (keyup.enter)="emitValue(true)"
-                    (keyup.escape)="emitValue(false)" />
-            </div>
             <select [(ngModel)]="selectedDay">
-                <option *ngFor="let day of DayList" [value]="day">{{ day }}</option>
+                <option *ngFor="let day of DayList" [value]="day">{{ day | translate }}</option>
             </select>
             <select [(ngModel)]="selectedTime">
-                <option *ngFor="let time of TimeList" [value]="time">{{ time }}</option>
+                <option *ngFor="let time of TimeList" [value]="time">{{ time | translate }}</option>
             </select>
             <div class="full-width">
-                <input class="full-width" matInput placeholder="What do you need to cook?" [(ngModel)]="_meal.title"
-                    (keyup.enter)="emitValue(true)" (keyup.escape)="emitValue(false)" />
+                <textarea autosize class="full-width" matInput placeholder="{{ 'What do you need to cook?' | translate }}" matTextareaAutosize
+                        matAutosizeMinRows="1" matAutosizeMaxRows="5" [(ngModel)]="_meal.title" (keyup.escape)="emitValue(false)"></textarea>
+                <!-- <textarea autosize placeholder="{{ 'What do you need to cook?' | translate }}" [(ngModel)]="_meal.title" (keyup.escape)="emitValue(false)"></textarea> -->
             </div>
         </mat-card-content>
         <mat-card-actions class="center">
-            <button mat-button (click)="emitValue(false)" color="primary">{{cancelText}}</button>
-            <button mat-raised-button (click)="emitValue(true)" color="primary">{{okText}}</button>
+            <button mat-button (click)="emitValue(false)" color="primary">{{ 'cancel' | translate }}</button>
+            <button mat-raised-button (click)="emitValue(true)" color="primary">{{ okText }}</button>
         </mat-card-actions>
     </mat-card>
 </div>

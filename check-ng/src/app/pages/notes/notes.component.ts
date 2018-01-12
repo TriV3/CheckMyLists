@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NotesService } from '../../shared/services/notes/notes.service';
 import { Note } from '../../shared/models/note';
+
+import { TranslateService } from '../../translate';
 
 @Component({
     selector: 'app-notes',
@@ -8,7 +10,7 @@ import { Note } from '../../shared/models/note';
     styleUrls: ['./notes.component.scss'],
     providers: [NotesService]
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent implements OnInit, OnDestroy {
 
     public title = 'Notes';
 
@@ -16,12 +18,21 @@ export class NotesComponent implements OnInit {
 
     public carretPosition = 0;
 
-    constructor(private noteService: NotesService) {
+    private translateSubscription: any;
+
+    constructor(private noteService: NotesService, private _translate: TranslateService) {
         this.note = new Note('');
     }
 
     ngOnInit() {
         this.GetNote();
+        this.title = this._translate.instant('notes', null);
+
+        this.translateSubscription = this.subscribeToLangChanged();
+    }
+
+    ngOnDestroy() {
+        this.translateSubscription.unsubscribe();
     }
 
     GetNote(query = '') {
@@ -68,5 +79,17 @@ export class NotesComponent implements OnInit {
         const end = input.selectionEnd;
         this.note.text = this.note.text.substring(0, start) + char + this.note.text.substring(end);
         this.carretPosition = start + 1;
+    }
+
+    subscribeToLangChanged() {
+        // refresh text
+        // please unsubribe during destroy
+        return this._translate.onLangChanged.subscribe(x => this.refreshText());
+    }
+
+    refreshText() {
+        // refresh translation when language change
+        this.title = this._translate.instant('notes', null);
+
     }
 }

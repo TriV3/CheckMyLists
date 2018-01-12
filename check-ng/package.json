@@ -1,6 +1,6 @@
 {
     "name": "check-ng",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "license": "MIT",
     "author": "triv3 <trivedev@gmail.com>",
     "scripts": {
@@ -27,6 +27,7 @@
         "core-js": "^2.4.1",
         "font-awesome": "^4.7.0",
         "ng2-dnd": "^4.2.0",
+        "ngx-textarea-autosize": "^1.1.1",
         "rxjs": "^5.4.2",
         "todomvc-app-css": "^2.1.0",
         "zone.js": "^0.8.14"

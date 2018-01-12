@@ -5,6 +5,6 @@
         (onClearCompleted)="ClearCompleted()"></app-list-container>
 </div>
 
-<app-task-dialog [title]="modalTitle" [placeholder]="'What do you need to do?'" [okText]="okButtonText" [task]="editingTask"
+<app-task-dialog [title]="modalTitle" [okText]="okButtonText" [task]="editingTask"
     (valueEmitted)="CommitDialog($event)" [showPrompt]="showDialog">
 </app-task-dialog>
