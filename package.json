@@ -7,6 +7,7 @@
         "serve:server": "cd server && npm run serve",
         "serve:angular": "cd check-ng && npm run serve",
         "serve:angular-aot": "cd check-ng && npm run serve-aot",
+        "serve:nativescript": "cd check-ns && npm run serve",
         "build:angular": "cd check-ng && npm run build"
     },
     "dependencies": {}

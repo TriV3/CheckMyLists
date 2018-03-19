@@ -3,6 +3,6 @@
     "v8Flags": "--expose_gc"
   },
   "main": "main.js",
-  "name": "tns-template-drawer-navigation-ng",
+  "name": "tns-template-hello-world-ng",
   "version": "3.3.0"
 }
