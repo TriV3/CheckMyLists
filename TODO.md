@@ -22,6 +22,9 @@
     ✔ Add an area to write notes @done (December 19th 2017, 10:34)
 	✔ Create a model for the note @done (December 19th 2017, 10:34)
     ✔ Implement REST api for note @done (December 19th 2017, 10:34)
-    ☐ Use i18n for english/french languages
+    ✔ Use i18n for english/french languages @done (March 19th 2018, 7:33)
+	✔ Use configuration file for server url and port @done (March 19th 2018, 7:33)
+    
 
 ## NativeScript
+

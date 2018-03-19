@@ -1,21 +1,21 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
-import { SharedModule } from "../shared/shared.module";
-import { SettingsRoutingModule } from "./settings-routing.module";
-import { SettingsComponent } from "./settings.component";
+import { SharedModule } from "../../shared/shared.module";
+import { BrowseRoutingModule } from "./browse-routing.module";
+import { BrowseComponent } from "./browse.component";
 
 @NgModule({
     imports: [
         NativeScriptModule,
-        SettingsRoutingModule,
+        BrowseRoutingModule,
         SharedModule
     ],
     declarations: [
-        SettingsComponent
+        BrowseComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
-export class SettingsModule { }
+export class BrowseModule { }

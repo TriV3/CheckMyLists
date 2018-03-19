@@ -9,7 +9,8 @@ export class NotesService {
     public databaseData = new Note();
     private apiUrl = 'Note';
     constructor(private api: ApiRequestsService, private gs: GlobalService) {
-        this.apiUrl = this.gs.apiBaseUrl + this.apiUrl;
+        this.apiUrl = this.gs.apiBaseUrl + '/' + this.apiUrl;
+        console.log(this.apiUrl);
     }
 
     get() {

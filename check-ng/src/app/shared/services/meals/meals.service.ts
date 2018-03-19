@@ -6,15 +6,16 @@ import { GlobalService } from '../global.service';
 @Injectable()
 export class MealsService {
 
-    public databaseData: Meal[] = [];
+    public databaseData: Meal[];
     private apiUrl = 'Meals';
 
     constructor(private api: ApiRequestsService, private gs: GlobalService) {
-        this.apiUrl = this.gs.apiBaseUrl + this.apiUrl;
+        this.apiUrl = this.gs.apiBaseUrl + '/' + this.apiUrl;
     }
 
     get(query = '') {
         return new Promise(resolve => {
+            console.log(this.apiUrl);
             this.api.Get(this.apiUrl).subscribe(
                 value => {
                     this.databaseData = value.json();

@@ -38,6 +38,7 @@ export class MealsComponent implements OnInit, OnDestroy {
         this.title = this._translate.instant('meals', null);
 
         this.translateSubscription = this.subscribeToLangChanged();
+
     }
 
     ngOnDestroy() {

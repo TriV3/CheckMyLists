@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from './translate';
+import { GlobalService } from './shared/services/global.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     private translateSubscription: any;
 
-    constructor(private _translate: TranslateService) { }
+    constructor(private _translate: TranslateService, public gs: GlobalService) { }
 
     ngOnInit() {
         // standing data

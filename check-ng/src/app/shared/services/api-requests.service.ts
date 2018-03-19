@@ -5,6 +5,13 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ApiRequestsService {
 
+    /**
+     * Local URL for conf file
+     *
+     * @memberof APIRequestsService
+     */
+    public confUrl = 'assets/conf.json';
+
     constructor(private http: Http) { }
 
 

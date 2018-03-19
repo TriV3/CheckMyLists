@@ -1,12 +1,12 @@
 {
     "name": "check-my-list",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "repository": "https://github.com/TriV3/CheckMyLists",
     "scripts": {
         "serve:server": "cd server && npm run serve",
         "serve:angular": "cd check-ng && npm run serve",
-        "serve:angular-aot": "cd check-ng && npm run serve:angular-aot",
+        "serve:angular-aot": "cd check-ng && npm run serve-aot",
         "build:angular": "cd check-ng && npm run build"
     },
     "dependencies": {}

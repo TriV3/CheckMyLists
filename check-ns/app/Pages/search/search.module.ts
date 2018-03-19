@@ -1,21 +1,21 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
-import { SharedModule } from "../shared/shared.module";
-import { HomeRoutingModule } from "./home-routing.module";
-import { HomeComponent } from "./home.component";
+import { SharedModule } from "../../shared/shared.module";
+import { SearchRoutingModule } from "./search-routing.module";
+import { SearchComponent } from "./search.component";
 
 @NgModule({
     imports: [
         NativeScriptModule,
-        HomeRoutingModule,
+        SearchRoutingModule,
         SharedModule
     ],
     declarations: [
-        HomeComponent
+        SearchComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
-export class HomeModule { }
+export class SearchModule { }
